@@ -6,7 +6,7 @@
     <title>Compendium Scientiae — Víctor Verdú Samper | Biología & Biomedicina</title>
     <meta name="description" content="Portafolio académico, biológico e investigador de Víctor Verdú Samper. Biología (UAM), Genética, Neurociencia, Inmunología y Patología Clínica.">
     
-    <!-- Google Fonts: Tipografía Clásica Editorial, Serif y Manuscrita -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IM+Fell+English:ital@0;1&family=Pinyon+Script&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -140,19 +140,36 @@
         .botanic-divider:not(:empty)::after {
             margin-left: 1.2rem;
         }
+
+        /* Sistema de Vistas Multipágina (SPA Router Interno) */
+        .page-view {
+            display: none;
+        }
+        .page-view.active {
+            display: block;
+            animation: fadeIn 0.35s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body class="font-serif antialiased selection:bg-sky selection:text-bistre dark:selection:bg-goldLeaf dark:selection:text-bistre-dark">
 
+    <!-- CINTA SUPERIOR -->
     <div class="relative overflow-hidden border-b border-goldLeaf/40 bg-gradient-to-r from-sky-light via-limestone-aged to-sky-light dark:from-[#1b2836] dark:via-[#1c1a17] dark:to-[#1b2836] py-2 px-4 text-center shadow-inner">
         <p class="font-cinzel text-[10px] sm:text-[11px] tracking-[0.25em] uppercase text-bistre dark:text-goldLeaf font-semibold">
             <span>☁ COMPENDIUM SCIENTIAE · HISTORIA NATURALIS & BIOLOGIA · MADRID MMXXVI ☁</span>
         </p>
     </div>
 
+    <!-- BARRA DE NAVEGACIÓN MULTIPÁGINA -->
     <header class="sticky top-0 z-40 border-b border-goldLeaf/50 bg-limestone-light/95 dark:bg-[#181512]/95 backdrop-blur-md">
         <div class="max-w-6xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
-            <a href="#inicio" class="flex items-center gap-3.5 group">
+            
+            <!-- Sello / Monograma -->
+            <a href="#inicio" onclick="switchPage('inicio')" class="flex items-center gap-3.5 group">
                 <span class="w-10 h-10 flex items-center justify-center border-2 border-goldLeaf bg-bistre text-limestone-light dark:bg-goldLeaf dark:text-bistre-dark font-cinzel font-bold text-base tracking-wider shadow-sm group-hover:scale-105 transition-transform">
                     VV
                 </span>
@@ -166,15 +183,19 @@
                 </div>
             </a>
 
-            <nav class="hidden lg:flex items-center gap-6 text-xs font-cinzel font-semibold tracking-[0.15em] uppercase text-bistre dark:text-limestone-light/90">
-                <a href="#sobre-mi" class="hover:text-goldLeaf transition-colors" data-es="I. Biografía" data-en="I. About Me">I. Biografía</a>
-                <a href="#disciplinas" class="hover:text-goldLeaf transition-colors" data-es="II. Disciplinas" data-en="II. Disciplines">II. Disciplinas</a>
-                <a href="#galeria" class="hover:text-goldLeaf transition-colors" data-es="III. Láminas" data-en="III. Plates">III. Láminas</a>
-                <a href="#trayectoria" class="hover:text-goldLeaf transition-colors" data-es="IV. Trayectoria" data-en="IV. Trajectory">IV. Trayectoria</a>
-                <a href="#publicaciones" class="hover:text-goldLeaf transition-colors" data-es="V. Papers" data-en="V. Papers">V. Papers</a>
-                <a href="#blog" class="hover:text-goldLeaf transition-colors" data-es="VI. Cuaderno" data-en="VI. Notebook">VI. Cuaderno</a>
+            <!-- Índice Neoclásico / Menú Multipágina -->
+            <nav class="hidden lg:flex items-center gap-5 text-xs font-cinzel font-semibold tracking-[0.12em] uppercase text-bistre dark:text-limestone-light/90">
+                <a href="#inicio" onclick="switchPage('inicio')" class="nav-link hover:text-goldLeaf transition-colors" data-es="Inicio" data-en="Home">Inicio</a>
+                <a href="#biografia" onclick="switchPage('biografia')" class="nav-link hover:text-goldLeaf transition-colors" data-es="I. Biografía" data-en="I. Biography">I. Biografía</a>
+                <a href="#disciplinas" onclick="switchPage('disciplinas')" class="nav-link hover:text-goldLeaf transition-colors" data-es="II. Disciplinas" data-en="II. Disciplines">II. Disciplinas</a>
+                <a href="#laminas" onclick="switchPage('laminas')" class="nav-link hover:text-goldLeaf transition-colors" data-es="III. Láminas" data-en="III. Plates">III. Láminas</a>
+                <a href="#trayectoria" onclick="switchPage('trayectoria')" class="nav-link hover:text-goldLeaf transition-colors" data-es="IV. Trayectoria" data-en="IV. Trajectory">IV. Trayectoria</a>
+                <a href="#papers" onclick="switchPage('papers')" class="nav-link hover:text-goldLeaf transition-colors" data-es="V. Papers" data-en="V. Papers">V. Papers</a>
+                <a href="#cuaderno" onclick="switchPage('cuaderno')" class="nav-link hover:text-goldLeaf transition-colors" data-es="VI. Cuaderno" data-en="VI. Notebook">VI. Cuaderno</a>
+                <a href="#referencias" onclick="switchPage('referencias')" class="nav-link hover:text-goldLeaf transition-colors" data-es="VII. Referencias" data-en="VII. References">VII. Referencias</a>
             </nav>
 
+            <!-- Controles: Idioma y Modo Estuco Nocturno -->
             <div class="flex items-center gap-2.5">
                 <button id="lang-toggle" onclick="toggleLanguage()" class="px-2.5 py-1.5 border border-goldLeaf/60 bg-limestone-aged/50 dark:bg-[#241F1A] font-cinzel text-xs font-semibold tracking-wider text-bistre dark:text-goldLeaf hover:border-bistre transition-colors">
                     ES ❖ EN
@@ -186,492 +207,423 @@
         </div>
     </header>
 
-    <main id="inicio" class="max-w-6xl mx-auto px-4 sm:px-8 py-12 space-y-20">
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-8 py-12 space-y-16">
 
-        <section id="sobre-mi" class="classic-moldura-border bg-limestone-light/90 dark:bg-[#181512]/95 p-6 sm:p-10 lg:p-12 relative overflow-hidden">
-            <div class="absolute top-2 left-2 w-12 h-12 pointer-events-none opacity-40 text-goldLeaf">
-                <svg viewBox="0 0 100 100" fill="currentColor"><path d="M0 0h100v10H10v90H0V0zm20 20h60v60H20V20z"/></svg>
-            </div>
-            <div class="absolute bottom-2 right-2 w-12 h-12 pointer-events-none opacity-40 text-goldLeaf">
-                <svg viewBox="0 0 100 100" fill="currentColor"><path d="M100 100H0v-10h90V0h10v100zM80 80H20V20h60v60z"/></svg>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                <div class="lg:col-span-7 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 border border-goldLeaf/50 bg-limestone-aged/60 dark:bg-[#241F1A] font-cinzel text-xs text-sky-deep dark:text-goldLeaf tracking-wider">
-                        <span>❧ LÁMINA I · FILOSOFÍA NATURAL & BIOLOGÍA</span>
-                    </div>
-
-                    <h1 class="font-cinzel text-3xl sm:text-5xl font-bold text-bistre dark:text-limestone-light leading-tight">
-                        Víctor Verdú Samper
-                    </h1>
-
-                    <p class="font-serif italic text-xl sm:text-2xl text-sky-deep dark:text-goldLeaf border-l-2 border-goldLeaf pl-4 leading-snug"
-                       data-es="Graduado en Biología (UAM) · Investigación Biomédica, Genética, Neurociencia, Inmunología y Laboratorio Clínico."
-                       data-en="B.Sc. in Biology (UAM) · Biomedical Research, Genetics, Neuroscience, Immunology & Clinical Laboratory.">
-                        Graduado en Biología (UAM) · Investigación Biomédica, Genética, Neurociencia, Inmunología y Laboratorio Clínico.
-                    </p>
-
-                    <p class="botanic-drop-cap text-base sm:text-lg leading-relaxed text-justify text-bistre/90 dark:text-limestone-light/90"
-                       data-es="Natural de Murcia y afincado en Madrid, me gradué en Biología por la Universidad Autónoma de Madrid (UAM). A lo largo de mi etapa universitaria he tenido la oportunidad de formarme tanto en el diagnóstico genético experimental como en la neurociencia computacional, realizando estancias de investigación en el Hospital Universitario 12 de Octubre y en Heriot-Watt University (Edimburgo). Más allá de los proyectos específicos que han marcado mi recorrido hasta ahora, mantengo un profundo interés general por la neurociencia, la genética, la inmunología y el ámbito del laboratorio clínico y el estudio de las patologías humanas, combinando el trabajo experimental de banco (Wet Lab) con las herramientas bioinformáticas (Dry Lab)."
-                       data-en="Originally from Murcia and based in Madrid, I hold a B.Sc. in Biology from Universidad Autónoma de Madrid (UAM). Throughout my academic journey, I have trained in both experimental genetic diagnostics and computational neuroscience through research placements at Hospital Universitario 12 de Octubre and Heriot-Watt University (Edinburgh). Beyond the specific projects that have shaped my path so far, my broader scientific interests span neuroscience, genetics, immunology, and the clinical laboratory and human pathology domains, bridging wet-lab experimentation with dry-lab bioinformatics.">
-                        Natural de Murcia y afincado en Madrid, me gradué en Biología por la Universidad Autónoma de Madrid (UAM). A lo largo de mi etapa universitaria he tenido la oportunidad de formarme tanto en el diagnóstico genético experimental como en la neurociencia computacional, realizando estancias de investigación en el Hospital Universitario 12 de Octubre y en Heriot-Watt University (Edimburgo). Más allá de los proyectos específicos que han marcado mi recorrido hasta ahora, mantengo un profundo interés general por la neurociencia, la genética, la inmunología y el ámbito del laboratorio clínico y el estudio de las patologías humanas, combinando el trabajo experimental de banco (Wet Lab) con las herramientas bioinformáticas (Dry Lab).
-                    </p>
-
-                    <div class="pt-2 flex flex-wrap items-center gap-3">
-                        <a href="assets/CV_Victor_Verdu.pdf" target="_blank" class="px-5 py-2.5 bg-bistre text-limestone-light dark:bg-goldLeaf dark:text-bistre-dark font-cinzel text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-all shadow-sm">
-                            <span data-es="↓ Descargar Currículum (PDF)" data-en="↓ Download Curriculum (PDF)">↓ Descargar Currículum (PDF)</span>
-                        </a>
-                        <a href="https://linkedin.com/" target="_blank" rel="noopener" class="px-4 py-2.5 border border-goldLeaf/60 bg-limestone-aged/30 dark:bg-[#241F1A] font-cinzel text-xs uppercase tracking-wider text-bistre dark:text-limestone-light hover:bg-bistre hover:text-limestone-light dark:hover:bg-goldLeaf dark:hover:text-bistre-dark transition-colors">
-                            LinkedIn ↗
-                        </a>
-                        <a href="https://github.com/" target="_blank" rel="noopener" class="px-4 py-2.5 border border-goldLeaf/60 bg-limestone-aged/30 dark:bg-[#241F1A] font-cinzel text-xs uppercase tracking-wider text-bistre dark:text-limestone-light hover:bg-bistre hover:text-limestone-light dark:hover:bg-goldLeaf dark:hover:text-bistre-dark transition-colors">
-                            GitHub ↗
-                        </a>
-                        <a href="https://instagram.com/" target="_blank" rel="noopener" class="px-4 py-2.5 border border-goldLeaf/60 bg-limestone-aged/30 dark:bg-[#241F1A] font-cinzel text-xs uppercase tracking-wider text-bistre dark:text-limestone-light hover:bg-bistre hover:text-limestone-light dark:hover:bg-goldLeaf dark:hover:text-bistre-dark transition-colors">
-                            Instagram ↗
-                        </a>
-                    </div>
+        <!-- ========================================================
+             VISTA 0: PÁGINA PRINCIPAL (HOME) CON PREVIEWS DE CADA SECCIÓN
+             ======================================================== -->
+        <div id="view-inicio" class="page-view active space-y-16">
+            
+            <!-- Hero / Presentación Principal -->
+            <section class="classic-moldura-border bg-limestone-light/90 dark:bg-[#181512]/95 p-6 sm:p-10 lg:p-12 relative overflow-hidden">
+                <div class="absolute top-2 left-2 w-12 h-12 pointer-events-none opacity-40 text-goldLeaf">
+                    <svg viewBox="0 0 100 100" fill="currentColor"><path d="M0 0h100v10H10v90H0V0zm20 20h60v60H20V20z"/></svg>
+                </div>
+                <div class="absolute bottom-2 right-2 w-12 h-12 pointer-events-none opacity-40 text-goldLeaf">
+                    <svg viewBox="0 0 100 100" fill="currentColor"><path d="M100 100H0v-10h90V0h10v100zM80 80H20V20h60v60z"/></svg>
                 </div>
 
-                <div class="lg:col-span-5">
-                    <div class="classic-moldura-border bg-limestone-aged/40 dark:bg-[#201C17] p-5 shadow-md relative">
-                        <div class="flex items-center justify-between border-b border-goldLeaf/40 pb-2 mb-3 font-cinzel text-[11px] text-sky-deep dark:text-goldLeaf tracking-widest">
-                            <span>FIG. 1 — RETRATO DE ARCHIVO</span>
-                            <span>PDL-2008 C-II</span>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 border border-goldLeaf/50 bg-limestone-aged/60 dark:bg-[#241F1A] font-cinzel text-xs text-sky-deep dark:text-goldLeaf tracking-wider">
+                            <span>❧ COMPENDIUM SCIENTIAE · VÍCTOR VERDÚ SAMPER</span>
                         </div>
 
-                        <div class="relative aspect-[4/5] w-full overflow-hidden bg-limestone-dark dark:bg-[#12100E] border border-goldLeaf/50">
-                            <img src="assets/perfil.jpg" 
-                                 alt="Víctor Verdú Samper" 
-                                 class="w-full h-full object-cover photo-botanic-filter"
-                                 onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 500%22><rect width=%22400%22 height=%22500%22 fill=%22%232A1F16%22/><rect x=%2220%22 y=%2220%22 width=%22360%22 height=%22460%22 fill=%22none%22 stroke=%22%23B89655%22 stroke-width=%221.5%22/><circle cx=%22200%22 cy=%22190%22 r=%2260%22 fill=%22none%22 stroke=%22%23B89655%22 stroke-width=%221.5%22 stroke-dasharray=%225 3%22/><path d=%22M110 360 C110 290 290 290 290 360%22 fill=%22none%22 stroke=%22%23B89655%22 stroke-width=%221.5%22/><text x=%22200%22 y=%22412%22 font-family=%22Georgia,serif%22 font-style=%22italic%22 font-size=%2213%22 fill=%22%23D4B77B%22 text-anchor=%22middle%22>Inserta tu retrato en:</text><text x=%22200%22 y=%22435%22 font-family=%22monospace%22 font-size=%2213%22 font-weight=%22bold%22 fill=%22%23F7F4EE%22 text-anchor=%22middle%22>assets/perfil.jpg</text></svg>';">
-                        </div>
+                        <h1 class="font-cinzel text-3xl sm:text-5xl font-bold text-bistre dark:text-limestone-light leading-tight">
+                            Víctor Verdú Samper
+                        </h1>
 
-                        <div class="mt-3 flex items-center justify-between text-xs font-serif italic text-bistre/80 dark:text-limestone-light/75">
-                            <span data-es="Víctor Verdú Samper · Biólogo (UAM)" data-en="Víctor Verdú Samper · Biologist (UAM)">Víctor Verdú Samper · Biólogo (UAM)</span>
-                            <span class="font-cinzel not-italic text-[10px] text-sky-deep dark:text-goldLeaf">MADRID, ES</span>
+                        <p class="font-serif italic text-xl sm:text-2xl text-sky-deep dark:text-goldLeaf border-l-2 border-goldLeaf pl-4 leading-snug"
+                           data-es="Graduado en Biología (UAM) · Investigación Biomédica, Genética, Neurociencia, Inmunología y Laboratorio Clínico."
+                           data-en="B.Sc. in Biology (UAM) · Biomedical Research, Genetics, Neuroscience, Immunology & Clinical Laboratory.">
+                            Graduado en Biología (UAM) · Investigación Biomédica, Genética, Neurociencia, Inmunología y Laboratorio Clínico.
+                        </p>
+
+                        <p class="botanic-drop-cap text-base sm:text-lg leading-relaxed text-justify text-bistre/90 dark:text-limestone-light/90"
+                           data-es="Bienvenido al compendio académico e investigador. Explora a continuación las distintas secciones dedicadas a mi formación, disciplinas científicas, archivo visual, trayectoria, publicaciones y cuaderno de notas."
+                           data-en="Welcome to the academic and research compendium. Explore below the dedicated sections covering my background, scientific disciplines, visual archive, trajectory, publications, and field notebook.">
+                            Bienvenido al compendio académico e investigador. Explora a continuación las distintas secciones dedicadas a mi formación, disciplinas científicas, archivo visual, trayectoria, publicaciones y cuaderno de notas.
+                        </p>
+
+                        <div class="pt-2 flex flex-wrap items-center gap-3">
+                            <a href="assets/CV_Victor_Verdu.pdf" target="_blank" class="px-5 py-2.5 bg-bistre text-limestone-light dark:bg-goldLeaf dark:text-bistre-dark font-cinzel text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-all shadow-sm">
+                                <span data-es="↓ Descargar Currículum (PDF)" data-en="↓ Download Curriculum (PDF)">↓ Descargar Currículum (PDF)</span>
+                            </a>
+                            <a href="#biografia" onclick="switchPage('biografia')" class="px-4 py-2.5 border border-goldLeaf bg-limestone-aged/50 dark:bg-[#241F1A] font-cinzel text-xs uppercase tracking-wider text-bistre dark:text-goldLeaf hover:bg-goldLeaf/20 transition-colors">
+                                <span data-es="Explorar Secciones →" data-en="Explore Sections →">Explorar Secciones →</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5">
+                        <div class="classic-moldura-border bg-limestone-aged/40 dark:bg-[#201C17] p-5 shadow-md relative">
+                            <div class="flex items-center justify-between border-b border-goldLeaf/40 pb-2 mb-3 font-cinzel text-[11px] text-sky-deep dark:text-goldLeaf tracking-widest">
+                                <span>FIG. 1 — RETRATO DE ARCHIVO</span>
+                                <span>PDL-2008 C-II</span>
+                            </div>
+                            <div class="relative aspect-[4/5] w-full overflow-hidden bg-limestone-dark dark:bg-[#12100E] border border-goldLeaf/50">
+                                <img src="assets/perfil.jpg" alt="Víctor Verdú Samper" class="w-full h-full object-cover photo-botanic-filter">
+                            </div>
+                            <div class="mt-3 flex items-center justify-between text-xs font-serif italic text-bistre/80 dark:text-limestone-light/75">
+                                <span>Víctor Verdú Samper · Biólogo (UAM)</span>
+                                <span class="font-cinzel not-italic text-[10px] text-sky-deep dark:text-goldLeaf">MADRID, ES</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <div class="botanic-divider font-cinzel text-sm tracking-[0.4em]">
-            ❧ ❖ ❧
+            <!-- PREVIEWS DE LAS 7 SECCIONES EN EL HOME -->
+            <div class="space-y-12">
+                <div class="botanic-divider font-cinzel text-sm tracking-[0.4em]">
+                    ❧ SECCIONES DEL COMPENDIUM ❧
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Preview 1: Biografía -->
+                    <div class="classic-moldura-border bg-limestone-light/80 dark:bg-[#181512] p-6 flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="font-cinzel text-xs text-sky-deep dark:text-goldLeaf">I. LÁMINA FILOSÓFICA</span>
+                            <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-1">Biografía & Presentación</h3>
+                            <p class="text-sm text-bistre/80 dark:text-limestone-light/80 mt-2">
+                                Origen en Murcia, formación en la UAM y trayectoria general en investigación biomédica y genética.
+                            </p>
+                        </div>
+                        <button onclick="switchPage('biografia')" class="font-cinzel text-xs uppercase tracking-wider text-sky-deep dark:text-goldLeaf hover:underline text-left">
+                            Ver página completa →
+                        </button>
+                    </div>
+
+                    <!-- Preview 2: Disciplinas -->
+                    <div class="classic-moldura-border bg-limestone-light/80 dark:bg-[#181512] p-6 flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="font-cinzel text-xs text-sky-deep dark:text-goldLeaf">II. VOCACIÓN CIENTÍFICA</span>
+                            <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-1">Disciplinas de Interés</h3>
+                            <p class="text-sm text-bistre/80 dark:text-limestone-light/80 mt-2">
+                                Neurociencia, genética humana, inmunología, patología clínica, bioinformática y wet lab.
+                            </p>
+                        </div>
+                        <button onclick="switchPage('disciplinas')" class="font-cinzel text-xs uppercase tracking-wider text-sky-deep dark:text-goldLeaf hover:underline text-left">
+                            Ver página completa →
+                        </button>
+                    </div>
+
+                    <!-- Preview 3: Láminas -->
+                    <div class="classic-moldura-border bg-limestone-light/80 dark:bg-[#181512] p-6 flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="font-cinzel text-xs text-sky-deep dark:text-goldLeaf">III. REGISTRO GRÁFICO</span>
+                            <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-1">Archivo Visual / Láminas</h3>
+                            <p class="text-sm text-bistre/80 dark:text-limestone-light/80 mt-2">
+                                Fotografías de laboratorio en el Hospital 12 de Octubre, Edimburgo y defensa de tesis en la UAM.
+                            </p>
+                        </div>
+                        <button onclick="switchPage('laminas')" class="font-cinzel text-xs uppercase tracking-wider text-sky-deep dark:text-goldLeaf hover:underline text-left">
+                            Ver página completa →
+                        </button>
+                    </div>
+
+                    <!-- Preview 4: Trayectoria -->
+                    <div class="classic-moldura-border bg-limestone-light/80 dark:bg-[#181512] p-6 flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="font-cinzel text-xs text-sky-deep dark:text-goldLeaf">IV. CRONOLOGÍA</span>
+                            <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-1">Trayectoria & Estancias</h3>
+                            <p class="text-sm text-bistre/80 dark:text-limestone-light/80 mt-2">
+                                Experiencia investigadora en GenELA (i+12) y Heriot-Watt University en Escocia (Erasmus+).
+                            </p>
+                        </div>
+                        <button onclick="switchPage('trayectoria')" class="font-cinzel text-xs uppercase tracking-wider text-sky-deep dark:text-goldLeaf hover:underline text-left">
+                            Ver página completa →
+                        </button>
+                    </div>
+
+                    <!-- Preview 5: Papers -->
+                    <div class="classic-moldura-border bg-limestone-light/80 dark:bg-[#181512] p-6 flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="font-cinzel text-xs text-sky-deep dark:text-goldLeaf">V. PRODUCCIÓN CIENTÍFICA</span>
+                            <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-1">Trabajos & Papers</h3>
+                            <p class="text-sm text-bistre/80 dark:text-limestone-light/80 mt-2">
+                                TFG sobre modelos de supervivencia en ELA (Premios COBCM) y ponencias orales en congresos.
+                            </p>
+                        </div>
+                        <button onclick="switchPage('papers')" class="font-cinzel text-xs uppercase tracking-wider text-sky-deep dark:text-goldLeaf hover:underline text-left">
+                            Ver página completa →
+                        </button>
+                    </div>
+
+                    <!-- Preview 6: Cuaderno -->
+                    <div class="classic-moldura-border bg-limestone-light/80 dark:bg-[#181512] p-6 flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="font-cinzel text-xs text-sky-deep dark:text-goldLeaf">VI. CUADERNO DE CAMPO</span>
+                            <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-1">Cuaderno de Notas</h3>
+                            <p class="text-sm text-bistre/80 dark:text-limestone-light/80 mt-2">
+                                Reflexiones sobre ciencia, bioinformática, biología molecular y vivencias académicas.
+                            </p>
+                        </div>
+                        <button onclick="switchPage('cuaderno')" class="font-cinzel text-xs uppercase tracking-wider text-sky-deep dark:text-goldLeaf hover:underline text-left">
+                            Ver página completa →
+                        </button>
+                    </div>
+
+                    <!-- Preview 7: Referencias -->
+                    <div class="classic-moldura-border bg-limestone-light/80 dark:bg-[#181512] p-6 flex flex-col justify-between space-y-4 lg:col-span-3">
+                        <div>
+                            <span class="font-cinzel text-xs text-sky-deep dark:text-goldLeaf">VII. MENTORES Y TUTORES</span>
+                            <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-1">Referencias Académicas y Científicas</h3>
+                            <p class="text-sm text-bistre/80 dark:text-limestone-light/80 mt-2">
+                                Dr. Alberto García Redondo (Hospital 12 de Octubre), Dra. Marta Vallejo (Heriot-Watt University) y Dr. Daniel Borrego Hernández.
+                            </p>
+                        </div>
+                        <button onclick="switchPage('referencias')" class="font-cinzel text-xs uppercase tracking-wider text-sky-deep dark:text-goldLeaf hover:underline text-left">
+                            Ver página completa →
+                        </button>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
-        <section id="disciplinas" class="space-y-8">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-goldLeaf/40 pb-4">
+
+        <!-- ========================================================
+             VISTA 1: PÁGINA DE BIOGRAFÍA
+             ======================================================== -->
+        <div id="view-biografia" class="page-view space-y-8">
+            <div class="border-b border-goldLeaf/40 pb-4 flex justify-between items-end">
                 <div>
-                    <span class="font-cinzel text-xs uppercase tracking-[0.2em] text-sky-deep dark:text-goldLeaf">§ SECCIÓN II · VOCACIÓN CIENTÍFICA</span>
-                    <h2 class="font-cinzel text-3xl font-bold text-bistre dark:text-limestone-light mt-1"
-                        data-es="Áreas de Interés e Investigación"
-                        data-en="Research & Scientific Interests">
-                        Áreas de Interés e Investigación
-                    </h2>
+                    <span class="font-cinzel text-xs uppercase tracking-[0.2em] text-sky-deep dark:text-goldLeaf">§ PÁGINA DEDICADA · SECCIÓN I</span>
+                    <h2 class="font-cinzel text-3xl font-bold text-bistre dark:text-limestone-light mt-1">Biografía y Presentación</h2>
                 </div>
-                <p class="font-serif italic text-sm text-bistre/80 dark:text-limestone-light/70 max-w-md"
-                   data-es="Campos cultivados en mi formación académica y disciplinas biomédicas que guían mi proyección profesional."
-                   data-en="Fields cultivated in my academic background and biomedical disciplines guiding my professional projection.">
-                    Campos cultivados en mi formación académica y disciplinas biomédicas que guían mi proyección profesional.
+                <button onclick="switchPage('inicio')" class="font-cinzel text-xs border border-goldLeaf px-3 py-1.5 hover:bg-goldLeaf/20">← Volver al Inicio</button>
+            </div>
+            
+            <div class="classic-moldura-border bg-limestone-light/90 dark:bg-[#181512] p-8 space-y-6">
+                <h3 class="font-cinzel text-2xl font-bold text-bistre dark:text-limestone-light">Víctor Verdú Samper — Semblanza Académica</h3>
+                <p class="botanic-drop-cap text-base sm:text-lg leading-relaxed text-bistre/90 dark:text-limestone-light/90">
+                    Natural de Murcia y afincado en Madrid, me gradué en Biología por la Universidad Autónoma de Madrid (UAM). A lo largo de mi etapa universitaria he tenido la oportunidad de formarme tanto en el diagnóstico genético experimental como en la neurociencia computacional, realizando estancias de investigación en el Hospital Universitario 12 de Octubre y en Heriot-Watt University (Edimburgo).
+                </p>
+                <p class="text-base leading-relaxed text-bistre/90 dark:text-limestone-light/90">
+                    Más allá de los proyectos específicos que han marcado mi recorrido hasta ahora, mantengo un profundo interés general por la neurociencia, la genética, la inmunología y el ámbito del laboratorio clínico y el estudio de las patologías humanas, combinando el trabajo experimental de banco (Wet Lab) con las herramientas bioinformáticas (Dry Lab).
                 </p>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="classic-moldura-border bg-limestone-light/70 dark:bg-[#181512] p-6">
-                    <span class="font-cinzel text-[10px] uppercase tracking-widest px-2 py-0.5 bg-sky/20 text-sky-deep dark:text-goldLeaf">Trayectoria & Interés</span>
-                    <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-3" data-es="Neurociencia y Neurobiología" data-en="Neuroscience & Neurobiology">Neurociencia y Neurobiología</h3>
-                    <p class="text-sm text-bistre/85 dark:text-limestone-light/80 mt-2 leading-relaxed"
-                       data-es="Estudio de mecanismos neurodegenerativos, agregación proteica, neuroinflamación y fisiopatología del sistema nervioso."
-                       data-en="Study of neurodegenerative mechanisms, protein aggregation, neuroinflammation, and nervous system pathophysiology.">
-                        Estudio de mecanismos neurodegenerativos, agregación proteica, neuroinflamación y fisiopatología del sistema nervioso.
-                    </p>
-                </div>
-
-                <div class="classic-moldura-border bg-limestone-light/70 dark:bg-[#181512] p-6">
-                    <span class="font-cinzel text-[10px] uppercase tracking-widest px-2 py-0.5 bg-sky/20 text-sky-deep dark:text-goldLeaf">Trayectoria & Interés</span>
-                    <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-3" data-es="Genética Humana y Molecular" data-en="Human & Molecular Genetics">Genética Humana y Molecular</h3>
-                    <p class="text-sm text-bistre/85 dark:text-limestone-light/80 mt-2 leading-relaxed"
-                       data-es="Diagnóstico genético, interpretación de variantes, arquitectura oligogénica y bases moleculares de enfermedades hereditarias."
-                       data-en="Genetic diagnostics, variant interpretation, oligogenic architecture, and molecular bases of hereditary diseases.">
-                        Diagnóstico genético, interpretación de variantes, arquitectura oligogénica y bases moleculares de enfermedades hereditarias.
-                    </p>
-                </div>
-
-                <div class="classic-moldura-border bg-limestone-light/70 dark:bg-[#181512] p-6">
-                    <span class="font-cinzel text-[10px] uppercase tracking-widest px-2 py-0.5 bg-goldLeaf/20 text-sky-deep dark:text-goldLeaf">Interés General</span>
-                    <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-3" data-es="Inmunología" data-en="Immunology">Inmunología</h3>
-                    <p class="text-sm text-bistre/85 dark:text-limestone-light/80 mt-2 leading-relaxed"
-                       data-es="Respuesta inmunitaria celular y molecular, procesos autoinmunes, inmunopatología e interacción neuro-inmune."
-                       data-en="Cellular and molecular immune responses, autoimmune processes, immunopathology, and neuro-immune interactions.">
-                        Respuesta inmunitaria celular y molecular, procesos autoinmunes, inmunopatología e interacción neuro-inmune.
-                    </p>
-                </div>
-
-                <div class="classic-moldura-border bg-limestone-light/70 dark:bg-[#181512] p-6">
-                    <span class="font-cinzel text-[10px] uppercase tracking-widest px-2 py-0.5 bg-goldLeaf/20 text-sky-deep dark:text-goldLeaf">Interés General</span>
-                    <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-3" data-es="Laboratorio Clínico y Patología" data-en="Clinical Lab & Pathology">Laboratorio Clínico y Patología</h3>
-                    <p class="text-sm text-bistre/85 dark:text-limestone-light/80 mt-2 leading-relaxed"
-                       data-es="Investigación traslacional en entorno hospitalario, biomarcadores diagnósticos y caracterización biológica de patologías humanas."
-                       data-en="Hospital-based translational research, diagnostic biomarkers, and biological characterization of human pathologies.">
-                        Investigación traslacional en entorno hospitalario, biomarcadores diagnósticos y caracterización biológica de patologías humanas.
-                    </p>
-                </div>
-
-                <div class="classic-moldura-border bg-limestone-light/70 dark:bg-[#181512] p-6">
-                    <span class="font-cinzel text-[10px] uppercase tracking-widest px-2 py-0.5 bg-sky/20 text-sky-deep dark:text-goldLeaf">Transversal (Dry Lab)</span>
-                    <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-3" data-es="Bioinformática y Machine Learning" data-en="Bioinformatics & Machine Learning">Bioinformática y Machine Learning</h3>
-                    <p class="text-sm text-bistre/85 dark:text-limestone-light/80 mt-2 leading-relaxed"
-                       data-es="Modelos predictivos de supervivencia, análisis de datos biomédicos en Python y R, y aprendizaje profundo aplicado a imagen biológica."
-                       data-en="Predictive survival modeling, biomedical data analysis in Python and R, and deep learning applied to biological imaging.">
-                        Modelos predictivos de supervivencia, análisis de datos biomédicos en Python y R, y aprendizaje profundo aplicado a imagen biológica.
-                    </p>
-                </div>
-
-                <div class="classic-moldura-border bg-limestone-light/70 dark:bg-[#181512] p-6">
-                    <span class="font-cinzel text-[10px] uppercase tracking-widest px-2 py-0.5 bg-sky/20 text-sky-deep dark:text-goldLeaf">Transversal (Wet Lab)</span>
-                    <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-3" data-es="Metodología Experimental" data-en="Experimental Methodology">Metodología Experimental</h3>
-                    <p class="text-sm text-bistre/85 dark:text-limestone-light/80 mt-2 leading-relaxed"
-                       data-es="Extracción y cuantificación de ácidos nucleicos, PCR, electroforesis, secuenciación Sanger y protocolos de diagnóstico molecular."
-                       data-en="Nucleic acid extraction and quantification, PCR, electrophoresis, Sanger sequencing, and molecular diagnostic protocols.">
-                        Extracción y cuantificación de ácidos nucleicos, PCR, electroforesis, secuenciación Sanger y protocolos de diagnóstico molecular.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <div class="botanic-divider font-cinzel text-sm tracking-[0.4em]">
-            ❧ ❖ ❧
         </div>
 
-        <section id="galeria" class="space-y-8">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-goldLeaf/40 pb-4">
+
+        <!-- ========================================================
+             VISTA 2: PÁGINA DE DISCIPLINAS
+             ======================================================== -->
+        <div id="view-disciplinas" class="page-view space-y-8">
+            <div class="border-b border-goldLeaf/40 pb-4 flex justify-between items-end">
                 <div>
-                    <span class="font-cinzel text-xs uppercase tracking-[0.2em] text-sky-deep dark:text-goldLeaf">§ SECCIÓN III · REGISTRO FOTOGRÁFICO</span>
-                    <h2 class="font-cinzel text-3xl font-bold text-bistre dark:text-limestone-light mt-1"
-                        data-es="Archivo Visual de Investigación"
-                        data-en="Visual Research Archive">
-                        Archivo Visual de Investigación
-                    </h2>
+                    <span class="font-cinzel text-xs uppercase tracking-[0.2em] text-sky-deep dark:text-goldLeaf">§ PÁGINA DEDICADA · SECCIÓN II</span>
+                    <h2 class="font-cinzel text-3xl font-bold text-bistre dark:text-limestone-light mt-1">Áreas de Interés e Investigación</h2>
                 </div>
-                <button onclick="document.body.classList.toggle('natural-photos')" class="self-start sm:self-auto px-3.5 py-1.5 border border-goldLeaf bg-limestone-aged/50 dark:bg-[#241F1A] font-cinzel text-xs text-bistre dark:text-goldLeaf hover:bg-goldLeaf/20 transition-colors">
-                    <span data-es="◈ Alternar Filtro Bistre / Color Natural" data-en="◈ Toggle Bistre Filter / Natural Color">◈ Alternar Filtro Bistre / Color Natural</span>
-                </button>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <figure class="classic-moldura-border bg-limestone-light/80 dark:bg-[#181512] p-5 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between font-cinzel text-[10px] text-sky-deep dark:text-goldLeaf mb-2">
-                            <span>LÁMINA I · WET LAB</span>
-                            <span>MADRID</span>
-                        </div>
-                        <div class="aspect-[4/3] w-full overflow-hidden bg-limestone-dark dark:bg-[#12100E] border border-goldLeaf/40">
-                            <img src="assets/laboratorio.jpg" 
-                                 alt="Trabajo en Laboratorio de Diagnóstico Genético" 
-                                 class="w-full h-full object-cover photo-botanic-filter"
-                                 onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%232A1F16%22/><rect x=%2216%22 y=%2216%22 width=%22368%22 height=%22268%22 fill=%22none%22 stroke=%22%23B89655%22 stroke-width=%221%22/><text x=%22200%22 y=%22135%22 font-family=%22Georgia,serif%22 font-style=%22italic%22 font-size=%2212%22 fill=%22%23D4B77B%22 text-anchor=%22middle%22>Guardar imagen en:</text><text x=%22200%22 y=%22160%22 font-family=%22monospace%22 font-size=%2213%22 font-weight=%22bold%22 fill=%22%23F7F4EE%22 text-anchor=%22middle%22>assets/laboratorio.jpg</text></svg>';">
-                        </div>
-                    </div>
-                    <figcaption class="mt-4 pt-3 border-t border-goldLeaf/30">
-                        <p class="font-cinzel font-bold text-base text-bistre dark:text-limestone-light" data-es="Diagnóstico Genético y Biología Molecular" data-en="Genetic Diagnosis & Molecular Biology">Diagnóstico Genético y Biología Molecular</p>
-                        <p class="font-serif italic text-xs text-bistre/75 dark:text-limestone-light/70 mt-0.5" data-es="Instituto de Investigación Hospital 12 de Octubre (i+12)." data-en="Hospital 12 de Octubre Research Institute (i+12).">Instituto de Investigación Hospital 12 de Octubre (i+12).</p>
-                    </figcaption>
-                </figure>
-
-                <figure class="classic-moldura-border bg-limestone-light/80 dark:bg-[#181512] p-5 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between font-cinzel text-[10px] text-sky-deep dark:text-goldLeaf mb-2">
-                            <span>LÁMINA II · EDINBURGH</span>
-                            <span>SCOTLAND</span>
-                        </div>
-                        <div class="aspect-[4/3] w-full overflow-hidden bg-limestone-dark dark:bg-[#12100E] border border-goldLeaf/40">
-                            <img src="assets/edimburgo.jpg" 
-                                 alt="Estancia de Investigación en Edimburgo" 
-                                 class="w-full h-full object-cover photo-botanic-filter"
-                                 onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%232A1F16%22/><rect x=%2216%22 y=%2216%22 width=%22368%22 height=%22268%22 fill=%22none%22 stroke=%22%23B89655%22 stroke-width=%221%22/><text x=%22200%22 y=%22135%22 font-family=%22Georgia,serif%22 font-style=%22italic%22 font-size=%2212%22 fill=%22%23D4B77B%22 text-anchor=%22middle%22>Guardar imagen en:</text><text x=%22200%22 y=%22160%22 font-family=%22monospace%22 font-size=%2213%22 font-weight=%22bold%22 fill=%22%23F7F4EE%22 text-anchor=%22middle%22>assets/edimburgo.jpg</text></svg>';">
-                        </div>
-                    </div>
-                    <figcaption class="mt-4 pt-3 border-t border-goldLeaf/30">
-                        <p class="font-cinzel font-bold text-base text-bistre dark:text-limestone-light" data-es="Neurociencia Computacional y ML-Health" data-en="Computational Neuroscience & ML-Health">Neurociencia Computacional y ML-Health</p>
-                        <p class="font-serif italic text-xs text-bistre/75 dark:text-limestone-light/70 mt-0.5" data-es="Estancia Erasmus+ en Heriot-Watt University, Edimburgo." data-en="Erasmus+ placement at Heriot-Watt University, Edinburgh.">Estancia Erasmus+ en Heriot-Watt University, Edimburgo.</p>
-                    </figcaption>
-                </figure>
-
-                <figure class="classic-moldura-border bg-limestone-light/80 dark:bg-[#181512] p-5 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between font-cinzel text-[10px] text-sky-deep dark:text-goldLeaf mb-2">
-                            <span>LÁMINA III · UAM</span>
-                            <span>MADRID</span>
-                        </div>
-                        <div class="aspect-[4/3] w-full overflow-hidden bg-limestone-dark dark:bg-[#12100E] border border-goldLeaf/40">
-                            <img src="assets/uam-defensa.jpg" 
-                                 alt="Defensa del Trabajo de Fin de Grado en la UAM" 
-                                 class="w-full h-full object-cover photo-botanic-filter"
-                                 onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect width=%22400%22 height=%22300%22 fill=%22%232A1F16%22/><rect x=%2216%22 y=%2216%22 width=%22368%22 height=%22268%22 fill=%22none%22 stroke=%22%23B89655%22 stroke-width=%221%22/><text x=%22200%22 y=%22135%22 font-family=%22Georgia,serif%22 font-style=%22italic%22 font-size=%2212%22 fill=%22%23D4B77B%22 text-anchor=%22middle%22>Guardar imagen en:</text><text x=%22200%22 y=%22160%22 font-family=%22monospace%22 font-size=%2213%22 font-weight=%22bold%22 fill=%22%23F7F4EE%22 text-anchor=%22middle%22>assets/uam-defensa.jpg</text></svg>';">
-                        </div>
-                    </div>
-                    <figcaption class="mt-4 pt-3 border-t border-goldLeaf/30">
-                        <p class="font-cinzel font-bold text-base text-bistre dark:text-limestone-light" data-es="Graduación y Defensa de Tesis de Grado" data-en="Graduation & Bachelor's Thesis Defense">Graduación y Defensa de Tesis de Grado</p>
-                        <p class="font-serif italic text-xs text-bistre/75 dark:text-limestone-light/70 mt-0.5" data-es="Facultad de Ciencias, Universidad Autónoma de Madrid." data-en="Faculty of Sciences, Universidad Autónoma de Madrid.">Facultad de Ciencias, Universidad Autónoma de Madrid.</p>
-                    </figcaption>
-                </figure>
-            </div>
-        </section>
-
-        <div class="botanic-divider font-cinzel text-sm tracking-[0.4em]">
-            ❧ ❖ ❧
-        </div>
-
-        <section id="trayectoria" class="space-y-8">
-            <div class="border-b border-goldLeaf/40 pb-4">
-                <span class="font-cinzel text-xs uppercase tracking-[0.2em] text-sky-deep dark:text-goldLeaf">§ SECCIÓN IV · CRONOLOGÍA ACADÉMICA</span>
-                <h2 class="font-cinzel text-3xl font-bold text-bistre dark:text-limestone-light mt-1"
-                    data-es="Trayectoria Universitaria y Estancias"
-                    data-en="Academic Trajectory & Research Placements">
-                    Trayectoria Universitaria y Estancias
-                </h2>
-            </div>
-
-            <div class="relative border-l-2 border-goldLeaf ml-3 sm:ml-6 pl-6 sm:pl-8 space-y-10">
-                <div class="relative">
-                    <span class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-bistre dark:bg-goldLeaf border-2 border-limestone-light dark:border-[#181512]"></span>
-                    <div class="font-cinzel text-xs text-sky-deep dark:text-goldLeaf uppercase tracking-wider">2025 – 2026 · MADRID, ESPAÑA</div>
-                    <h3 class="font-cinzel text-2xl font-bold text-bistre dark:text-limestone-light mt-1"
-                        data-es="Investigador en Prácticas — Laboratorio de Diagnóstico Genético e Investigación en ELA (GenELA)"
-                        data-en="Research Intern — Genetic Diagnosis & ALS Research Laboratory (GenELA)">
-                        Investigador en Prácticas — Laboratorio de Diagnóstico Genético e Investigación en ELA (GenELA)
-                    </h3>
-                    <div class="font-serif italic text-base text-sky-deep dark:text-limestone-light/80">
-                        Instituto de Investigación Sanitaria Hospital 12 de Octubre (Fundación i+12)
-                    </div>
-                    <p class="text-sm sm:text-base text-bistre/85 dark:text-limestone-light/80 mt-2 leading-relaxed"
-                       data-es="Trabajo experimental en diagnóstico genético (extracción de ADN, PCR, electroforesis en gel de agarosa y secuenciación Sanger) e interpretación de variantes, combinado con el desarrollo de modelos predictivos de supervivencia en pacientes basados en arquitectura genética."
-                       data-en="Experimental work in genetic diagnostics (DNA extraction, PCR, agarose gel electrophoresis, and Sanger sequencing) and variant interpretation, paired with clinical survival modeling based on genetic architecture.">
-                        Trabajo experimental en diagnóstico genético (extracción de ADN, PCR, electroforesis en gel de agarosa y secuenciación Sanger) e interpretación de variantes, combinado con el desarrollo de modelos predictivos de supervivencia en pacientes basados en arquitectura genética.
-                    </p>
-                </div>
-
-                <div class="relative">
-                    <span class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-bistre dark:bg-goldLeaf border-2 border-limestone-light dark:border-[#181512]"></span>
-                    <div class="font-cinzel text-xs text-sky-deep dark:text-goldLeaf uppercase tracking-wider">2025 · EDIMBURGO, ESCOCIA (REINO UNIDO)</div>
-                    <h3 class="font-cinzel text-2xl font-bold text-bistre dark:text-limestone-light mt-1"
-                        data-es="Investigador en Neurociencia Computacional (Estancia Erasmus+)"
-                        data-en="Computational Neuroscience Research Intern (Erasmus+ Placement)">
-                        Investigador en Neurociencia Computacional (Estancia Erasmus+)
-                    </h3>
-                    <div class="font-serif italic text-base text-sky-deep dark:text-limestone-light/80">
-                        Heriot-Watt University · Ponente en el encuentro científico ML-Health
-                    </div>
-                    <p class="text-sm sm:text-base text-bistre/85 dark:text-limestone-light/80 mt-2 leading-relaxed"
-                       data-es="Desarrollo de modelos de Machine Learning y Deep Learning para el análisis de agregación proteica y perfiles neuroinflamatorios. Presentación oral de resultados en el evento ML-Health en Heriot-Watt University."
-                       data-en="Development of Machine Learning and Deep Learning models to analyze protein aggregation and neuroinflammatory profiles. Delivered an oral presentation at the ML-Health event at Heriot-Watt University.">
-                        Desarrollo de modelos de Machine Learning y Deep Learning para el análisis de agregación proteica y perfiles neuroinflamatorios. Presentación oral de resultados en el evento ML-Health en Heriot-Watt University.
-                    </p>
-                </div>
-
-                <div class="relative">
-                    <span class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-bistre dark:bg-goldLeaf border-2 border-limestone-light dark:border-[#181512]"></span>
-                    <div class="font-cinzel text-xs text-sky-deep dark:text-goldLeaf uppercase tracking-wider">GRADUACIÓN 2026 · MADRID, ESPAÑA</div>
-                    <h3 class="font-cinzel text-2xl font-bold text-bistre dark:text-limestone-light mt-1"
-                        data-es="Grado en Biología (Bachelor of Science in Biology)"
-                        data-en="Bachelor of Science in Biology (Grado en Biología)">
-                        Grado en Biología (Bachelor of Science in Biology)
-                    </h3>
-                    <div class="font-serif italic text-base text-sky-deep dark:text-limestone-light/80">
-                        Universidad Autónoma de Madrid (UAM)
-                    </div>
-                    <p class="text-sm sm:text-base text-bistre/85 dark:text-limestone-light/80 mt-2 leading-relaxed"
-                       data-es="Formación integral en biología molecular, genética, inmunología y fisiología. Trabajo de Fin de Grado (TFG) presentado a la XX Edición del Premio al Mejor TFG del Colegio Oficial de Biólogos de la Comunidad de Madrid (COBCM)."
-                       data-en="Comprehensive training in molecular biology, genetics, immunology, and physiology. Bachelor's Thesis submitted to the XX Edition of the Best Thesis Award by the Official College of Biologists of Madrid (COBCM).">
-                        Formación integral en biología molecular, genética, inmunología y fisiología. Trabajo de Fin de Grado (TFG) presentado a la XX Edición del Premio al Mejor TFG del Colegio Oficial de Biólogos de la Comunidad de Madrid (COBCM).
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <div class="botanic-divider font-cinzel text-sm tracking-[0.4em]">
-            ❧ ❖ ❧
-        </div>
-
-        <section id="publicaciones" class="space-y-8">
-            <div class="border-b border-goldLeaf/40 pb-4">
-                <span class="font-cinzel text-xs uppercase tracking-[0.2em] text-sky-deep dark:text-goldLeaf">§ SECCIÓN V · PRODUCCIÓN CIENTÍFICA</span>
-                <h2 class="font-cinzel text-3xl font-bold text-bistre dark:text-limestone-light mt-1"
-                    data-es="Trabajos Académicos, Ponencias y Futuros Papers"
-                    data-en="Academic Works, Talks & Upcoming Papers">
-                    Trabajos Académicos, Ponencias y Futuros Papers
-                </h2>
-            </div>
-
-            <div class="space-y-4">
-                <article class="classic-moldura-border bg-limestone-light/80 dark:bg-[#181512] p-6">
-                    <div class="flex flex-wrap items-center justify-between gap-2 font-cinzel text-xs text-sky-deep dark:text-goldLeaf">
-                        <span>[TESIS DE GRADO / TFG · 2026]</span>
-                        <span>UAM & HOSPITAL 12 DE OCTUBRE</span>
-                    </div>
-                    <h3 class="font-cinzel text-2xl font-bold text-bistre dark:text-limestone-light mt-2">
-                        Modelo Predictivo de Supervivencia en Pacientes con ELA Basado en Machine Learning y Arquitectura Oligogénica
-                    </h3>
-                    <p class="text-sm text-bistre/85 dark:text-limestone-light/80 mt-2 leading-relaxed"
-                       data-es="Integración de datos genéticos y variables clínicas mediante modelos de supervivencia para evaluar el impacto de la carga oligogénica en el pronóstico de la Esclerosis Lateral Amiotrófica. Candidato en la XX Edición de los Premios COBCM."
-                       data-en="Integration of genetic data and clinical variables using machine learning survival models to evaluate the impact of oligogenic burden on ALS prognosis. Submitted to the XX Edition of the COBCM Awards.">
-                        Integración de datos genéticos y variables clínicas mediante modelos de supervivencia para evaluar el impacto de la carga oligogénica en el pronóstico de la Esclerosis Lateral Amiotrófica. Candidato en la XX Edición de los Premios COBCM.
-                    </p>
-                </article>
-
-                <article class="classic-moldura-border bg-limestone-light/80 dark:bg-[#181512] p-6">
-                    <div class="flex flex-wrap items-center justify-between gap-2 font-cinzel text-xs text-sky-deep dark:text-goldLeaf">
-                        <span>[PONENCIA ORAL · 2025]</span>
-                        <span>ML-HEALTH EVENT · HERIOT-WATT UNIVERSITY</span>
-                    </div>
-                    <h3 class="font-cinzel text-2xl font-bold text-bistre dark:text-limestone-light mt-2">
-                        Machine Learning & Deep Learning Approaches to Protein Aggregation and Neuroinflammatory Profiles
-                    </h3>
-                    <p class="text-sm text-bistre/85 dark:text-limestone-light/80 mt-2 leading-relaxed"
-                       data-es="Comunicación presentada en Edimburgo sobre la aplicación de técnicas de aprendizaje automático al análisis de agregados proteicos y respuesta neuroinflamatoria."
-                       data-en="Oral presentation delivered in Edinburgh on applying machine learning techniques to analyze protein aggregates and neuroinflammatory responses.">
-                        Comunicación presentada en Edimburgo sobre la aplicación de técnicas de aprendizaje automático al análisis de agregados proteicos y respuesta neuroinflamatoria.
-                    </p>
-                </article>
-
-                <article class="p-6 border border-dashed border-goldLeaf bg-limestone-aged/40 dark:bg-[#1a1613]">
-                    <div class="font-cinzel text-xs uppercase tracking-widest text-sky-deep dark:text-goldLeaf">
-                        [PRÓXIMAS PUBLICACIONES & PREPRINTS]
-                    </div>
-                    <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-1"
-                        data-es="Espacio reservado para futuros artículos científicos y colaboraciones"
-                        data-en="Reserved space for upcoming peer-reviewed papers and preprints">
-                        Espacio reservado para futuros artículos científicos y colaboraciones
-                    </h3>
-                    <p class="text-sm text-bistre/75 dark:text-limestone-light/70 mt-1"
-                       data-es="Aquí se enlazarán los DOIs, preprints (bioRxiv / medRxiv) y repositorios de código asociados a próximas investigaciones."
-                       data-en="DOIs, preprints (bioRxiv / medRxiv), and code repositories for upcoming research will be indexed here.">
-                        Aquí se enlazarán los DOIs, preprints (bioRxiv / medRxiv) y repositorios de código asociados a próximas investigaciones.
-                    </p>
-                </article>
-            </div>
-        </section>
-
-        <div class="botanic-divider font-cinzel text-sm tracking-[0.4em]">
-            ❧ ❖ ❧
-        </div>
-
-        <section id="blog" class="space-y-8">
-            <div class="border-b border-goldLeaf/40 pb-4">
-                <span class="font-cinzel text-xs uppercase tracking-[0.2em] text-sky-deep dark:text-goldLeaf">§ SECCIÓN VI · CUADERNO DE CAMPO & CALIGRAFÍA</span>
-                <h2 class="font-cinzel text-3xl font-bold text-bistre dark:text-limestone-light mt-1"
-                    data-es="Cuaderno de Notas (Blog)"
-                    data-en="Field Notebook (Blog)">
-                    Cuaderno de Notas (Blog)
-                </h2>
-            </div>
-
-            <div class="classic-moldura-border grid-paper p-6 sm:p-8 text-center space-y-3 bg-limestone-light/90 dark:bg-[#181512]">
-                <p class="font-script text-3xl sm:text-4xl text-sky-deep dark:text-goldLeaf">
-                    “When you do something beautiful and nobody notices, do not be sad...”
-                </p>
-                <p class="font-serif italic text-sm text-bistre/70 dark:text-limestone-light/60">
-                    — John Lennon
-                </p>
+                <button onclick="switchPage('inicio')" class="font-cinzel text-xs border border-goldLeaf px-3 py-1.5 hover:bg-goldLeaf/20">← Volver al Inicio</button>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <article class="classic-moldura-border grid-paper p-6 bg-limestone-light/80 dark:bg-[#181512] flex flex-col justify-between">
-                    <div>
-                        <div class="font-cinzel text-xs text-sky-deep dark:text-goldLeaf">OCTUBRE 2026 · REFLEXIÓN CIENTÍFICA</div>
-                        <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-2"
-                            data-es="Conectando el banco de laboratorio (Wet Lab) y la bioinformática (Dry Lab)"
-                            data-en="Bridging the Wet Lab Bench and Dry Lab Bioinformatics">
-                            Conectando el banco de laboratorio (Wet Lab) y la bioinformática (Dry Lab)
-                        </h3>
-                        <p class="text-sm text-bistre/85 dark:text-limestone-light/80 mt-2 leading-relaxed"
-                           data-es="Por qué comprender qué ocurre dentro de un tubo de PCR o en un gel de agarosa te convierte en un mejor analista de datos biomédicos."
-                           data-en="Why understanding what happens inside a PCR tube or an agarose gel makes you a better biomedical data analyst.">
-                            Por qué comprender qué ocurre dentro de un tubo de PCR o en un gel de agarosa te convierte en un mejor analista de datos biomédicos.
-                        </p>
-                    </div>
-                    <button onclick="openBlogModal(1)" class="mt-4 self-start font-cinzel text-xs uppercase tracking-wider text-sky-deep dark:text-goldLeaf hover:underline">
-                        <span data-es="Leer entrada completa →" data-en="Read full entry →">Leer entrada completa →</span>
-                    </button>
-                </article>
+                <div class="classic-moldura-border bg-limestone-light/70 dark:bg-[#181512] p-6">
+                    <span class="font-cinzel text-[10px] uppercase tracking-widest px-2 py-0.5 bg-sky/20 text-sky-deep dark:text-goldLeaf">Trayectoria & Interés</span>
+                    <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-3">Neurociencia y Neurobiología</h3>
+                    <p class="text-sm text-bistre/85 dark:text-limestone-light/80 mt-2 leading-relaxed">
+                        Estudio de mecanismos neurodegenerativos, agregación proteica, neuroinflamación y fisiopatología del sistema nervioso.
+                    </p>
+                </div>
+                <div class="classic-moldura-border bg-limestone-light/70 dark:bg-[#181512] p-6">
+                    <span class="font-cinzel text-[10px] uppercase tracking-widest px-2 py-0.5 bg-sky/20 text-sky-deep dark:text-goldLeaf">Trayectoria & Interés</span>
+                    <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-3">Genética Humana y Molecular</h3>
+                    <p class="text-sm text-bistre/85 dark:text-limestone-light/80 mt-2 leading-relaxed">
+                        Diagnóstico genético, interpretación de variantes, arquitectura oligogénica y bases moleculares de enfermedades hereditarias.
+                    </p>
+                </div>
+                <div class="classic-moldura-border bg-limestone-light/70 dark:bg-[#181512] p-6">
+                    <span class="font-cinzel text-[10px] uppercase tracking-widest px-2 py-0.5 bg-goldLeaf/20 text-sky-deep dark:text-goldLeaf">Interés General</span>
+                    <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-3">Inmunología</h3>
+                    <p class="text-sm text-bistre/85 dark:text-limestone-light/80 mt-2 leading-relaxed">
+                        Respuesta inmunitaria celular y molecular, procesos autoinmunes, inmunopatología e interacción neuro-inmune.
+                    </p>
+                </div>
+                <div class="classic-moldura-border bg-limestone-light/70 dark:bg-[#181512] p-6">
+                    <span class="font-cinzel text-[10px] uppercase tracking-widest px-2 py-0.5 bg-goldLeaf/20 text-sky-deep dark:text-goldLeaf">Interés General</span>
+                    <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-3">Laboratorio Clínico y Patología</h3>
+                    <p class="text-sm text-bistre/85 dark:text-limestone-light/80 mt-2 leading-relaxed">
+                        Investigación traslacional en entorno hospitalario, biomarcadores diagnósticos y caracterización biológica de patologías humanas.
+                    </p>
+                </div>
+            </div>
+        </div>
 
-                <article class="classic-moldura-border grid-paper p-6 bg-limestone-light/80 dark:bg-[#181512] flex flex-col justify-between">
-                    <div>
-                        <div class="font-cinzel text-xs text-sky-deep dark:text-goldLeaf">SEPTIEMBRE 2026 · VIDA ACADÉMICA</div>
-                        <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-2"
-                            data-es="Apuntes de una estancia de investigación en Edimburgo"
-                            data-en="Notes from a Research Placement in Edinburgh">
-                            Apuntes de una estancia de investigación en Edimburgo
-                        </h3>
-                        <p class="text-sm text-bistre/85 dark:text-limestone-light/80 mt-2 leading-relaxed"
-                           data-es="Aprendizajes científicos y personales trabajando en neurociencia computacional en Heriot-Watt University."
-                           data-en="Scientific and personal takeaways from working in computational neuroscience at Heriot-Watt University.">
-                            Aprendizajes científicos y personales trabajando en neurociencia computacional en Heriot-Watt University.
-                        </p>
+
+        <!-- ========================================================
+             VISTA 3: PÁGINA DE LÁMINAS / ARCHIVO VISUAL
+             ======================================================== -->
+        <div id="view-laminas" class="page-view space-y-8">
+            <div class="border-b border-goldLeaf/40 pb-4 flex justify-between items-end">
+                <div>
+                    <span class="font-cinzel text-xs uppercase tracking-[0.2em] text-sky-deep dark:text-goldLeaf">§ PÁGINA DEDICADA · SECCIÓN III</span>
+                    <h2 class="font-cinzel text-3xl font-bold text-bistre dark:text-limestone-light mt-1">Archivo Visual de Investigación (Láminas)</h2>
+                </div>
+                <button onclick="switchPage('inicio')" class="font-cinzel text-xs border border-goldLeaf px-3 py-1.5 hover:bg-goldLeaf/20">← Volver al Inicio</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <figure class="classic-moldura-border bg-limestone-light/80 dark:bg-[#181512] p-5">
+                    <div class="aspect-[4/3] w-full overflow-hidden bg-limestone-dark dark:bg-[#12100E] border border-goldLeaf/40 mb-3">
+                        <img src="assets/laboratorio.jpg" alt="Laboratorio" class="w-full h-full object-cover photo-botanic-filter">
                     </div>
-                    <button onclick="openBlogModal(2)" class="mt-4 self-start font-cinzel text-xs uppercase tracking-wider text-sky-deep dark:text-goldLeaf hover:underline">
-                        <span data-es="Leer entrada completa →" data-en="Read full entry →">Leer entrada completa →</span>
-                    </button>
+                    <figcaption>
+                        <h3 class="font-cinzel font-bold text-base text-bistre dark:text-limestone-light">Diagnóstico Genético y Biología Molecular</h3>
+                        <p class="font-serif italic text-xs text-bistre/75 dark:text-limestone-light/70 mt-0.5">Instituto de Investigación Hospital 12 de Octubre (i+12).</p>
+                    </figcaption>
+                </figure>
+                <figure class="classic-moldura-border bg-limestone-light/80 dark:bg-[#181512] p-5">
+                    <div class="aspect-[4/3] w-full overflow-hidden bg-limestone-dark dark:bg-[#12100E] border border-goldLeaf/40 mb-3">
+                        <img src="assets/edimburgo.jpg" alt="Edimburgo" class="w-full h-full object-cover photo-botanic-filter">
+                    </div>
+                    <figcaption>
+                        <h3 class="font-cinzel font-bold text-base text-bistre dark:text-limestone-light">Neurociencia Computacional y ML-Health</h3>
+                        <p class="font-serif italic text-xs text-bistre/75 dark:text-limestone-light/70 mt-0.5">Estancia Erasmus+ en Heriot-Watt University, Edimburgo.</p>
+                    </figcaption>
+                </figure>
+                <figure class="classic-moldura-border bg-limestone-light/80 dark:bg-[#181512] p-5">
+                    <div class="aspect-[4/3] w-full overflow-hidden bg-limestone-dark dark:bg-[#12100E] border border-goldLeaf/40 mb-3">
+                        <img src="assets/uam-defensa.jpg" alt="Defensa Tesis" class="w-full h-full object-cover photo-botanic-filter">
+                    </div>
+                    <figcaption>
+                        <h3 class="font-cinzel font-bold text-base text-bistre dark:text-limestone-light">Graduación y Defensa de Tesis de Grado</h3>
+                        <p class="font-serif italic text-xs text-bistre/75 dark:text-limestone-light/70 mt-0.5">Facultad de Ciencias, Universidad Autónoma de Madrid.</p>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+
+        <!-- ========================================================
+             VISTA 4: PÁGINA DE TRAYECTORIA
+             ======================================================== -->
+        <div id="view-trayectoria" class="page-view space-y-8">
+            <div class="border-b border-goldLeaf/40 pb-4 flex justify-between items-end">
+                <div>
+                    <span class="font-cinzel text-xs uppercase tracking-[0.2em] text-sky-deep dark:text-goldLeaf">§ PÁGINA DEDICADA · SECCIÓN IV</span>
+                    <h2 class="font-cinzel text-3xl font-bold text-bistre dark:text-limestone-light mt-1">Trayectoria Universitaria y Estancias</h2>
+                </div>
+                <button onclick="switchPage('inicio')" class="font-cinzel text-xs border border-goldLeaf px-3 py-1.5 hover:bg-goldLeaf/20">← Volver al Inicio</button>
+            </div>
+
+            <div class="relative border-l-2 border-goldLeaf ml-6 pl-8 space-y-10">
+                <div class="relative">
+                    <span class="absolute -left-[39px] top-1.5 w-4 h-4 rounded-full bg-bistre dark:bg-goldLeaf border-2 border-limestone-light dark:border-[#181512]"></span>
+                    <div class="font-cinzel text-xs text-sky-deep dark:text-goldLeaf uppercase tracking-wider">2025 – 2026 · MADRID, ESPAÑA</div>
+                    <h3 class="font-cinzel text-2xl font-bold text-bistre dark:text-limestone-light mt-1">Investigador en Prácticas — GenELA (Hospital 12 de Octubre)</h3>
+                    <p class="text-sm text-bistre/85 dark:text-limestone-light/80 mt-2 leading-relaxed">
+                        Trabajo experimental en diagnóstico genético (extracción de ADN, PCR, electroforesis y secuenciación Sanger) e interpretación de variantes y modelos de supervivencia.
+                    </p>
+                </div>
+                <div class="relative">
+                    <span class="absolute -left-[39px] top-1.5 w-4 h-4 rounded-full bg-bistre dark:bg-goldLeaf border-2 border-limestone-light dark:border-[#181512]"></span>
+                    <div class="font-cinzel text-xs text-sky-deep dark:text-goldLeaf uppercase tracking-wider">2025 · EDIMBURGO, ESCOCIA</div>
+                    <h3 class="font-cinzel text-2xl font-bold text-bistre dark:text-limestone-light mt-1">Investigador en Neurociencia Computacional (Erasmus+)</h3>
+                    <p class="text-sm text-bistre/85 dark:text-limestone-light/80 mt-2 leading-relaxed">
+                        Heriot-Watt University · Desarrollo de modelos de Machine Learning y Deep Learning para agregación proteica y neuroinflamación. Ponente en ML-Health.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ========================================================
+             VISTA 5: PÁGINA DE PAPERS Y TRABAJOS
+             ======================================================== -->
+        <div id="view-papers" class="page-view space-y-8">
+            <div class="border-b border-goldLeaf/40 pb-4 flex justify-between items-end">
+                <div>
+                    <span class="font-cinzel text-xs uppercase tracking-[0.2em] text-sky-deep dark:text-goldLeaf">§ PÁGINA DEDICADA · SECCIÓN V</span>
+                    <h2 class="font-cinzel text-3xl font-bold text-bistre dark:text-limestone-light mt-1">Trabajos Académicos y Ponencias</h2>
+                </div>
+                <button onclick="switchPage('inicio')" class="font-cinzel text-xs border border-goldLeaf px-3 py-1.5 hover:bg-goldLeaf/20">← Volver al Inicio</button>
+            </div>
+
+            <div class="space-y-6">
+                <article class="classic-moldura-border bg-limestone-light/80 dark:bg-[#181512] p-6">
+                    <span class="font-cinzel text-xs text-sky-deep dark:text-goldLeaf">[TESIS DE GRADO / TFG · 2026]</span>
+                    <h3 class="font-cinzel text-2xl font-bold text-bistre dark:text-limestone-light mt-2">Modelo Predictivo de Supervivencia en Pacientes con ELA Basado en Machine Learning y Arquitectura Oligogénica</h3>
+                    <p class="text-sm text-bistre/85 dark:text-limestone-light/80 mt-2 leading-relaxed">
+                        Candidato en la XX Edición de los Premios COBCM. Integración de datos genéticos y variables clínicas en ELA.
+                    </p>
+                </article>
+                <article class="classic-moldura-border bg-limestone-light/80 dark:bg-[#181512] p-6">
+                    <span class="font-cinzel text-xs text-sky-deep dark:text-goldLeaf">[PONENCIA ORAL · 2025]</span>
+                    <h3 class="font-cinzel text-2xl font-bold text-bistre dark:text-limestone-light mt-2">Machine Learning & Deep Learning Approaches to Protein Aggregation</h3>
+                    <p class="text-sm text-bistre/85 dark:text-limestone-light/80 mt-2 leading-relaxed">
+                        Comunicación presentada en Heriot-Watt University (Edimburgo) en el evento ML-Health.
+                    </p>
                 </article>
             </div>
-        </section>
+        </div>
 
-        <section id="referencias" class="space-y-8">
-            <div class="border-b border-goldLeaf/40 pb-4">
-                <span class="font-cinzel text-xs uppercase tracking-[0.2em] text-sky-deep dark:text-goldLeaf">§ SECCIÓN VII · MENTORES Y SUPERVISORES</span>
-                <h2 class="font-cinzel text-3xl font-bold text-bistre dark:text-limestone-light mt-1"
-                    data-es="Referencias Académicas y Científicas"
-                    data-en="Academic & Scientific References">
-                    Referencias Académicas y Científicas
-                </h2>
+
+        <!-- ========================================================
+             VISTA 6: PÁGINA DE CUADERNO (BLOG)
+             ======================================================== -->
+        <div id="view-cuaderno" class="page-view space-y-8">
+            <div class="border-b border-goldLeaf/40 pb-4 flex justify-between items-end">
+                <div>
+                    <span class="font-cinzel text-xs uppercase tracking-[0.2em] text-sky-deep dark:text-goldLeaf">§ PÁGINA DEDICADA · SECCIÓN VI</span>
+                    <h2 class="font-cinzel text-3xl font-bold text-bistre dark:text-limestone-light mt-1">Cuaderno de Notas y Reflexiones</h2>
+                </div>
+                <button onclick="switchPage('inicio')" class="font-cinzel text-xs border border-goldLeaf px-3 py-1.5 hover:bg-goldLeaf/20">← Volver al Inicio</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <article class="classic-moldura-border grid-paper p-6 bg-limestone-light/80 dark:bg-[#181512]">
+                    <span class="font-cinzel text-xs text-sky-deep dark:text-goldLeaf">OCTUBRE 2026</span>
+                    <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-2">Conectando el Wet Lab y la Bioinformática</h3>
+                    <p class="text-sm text-bistre/85 dark:text-limestone-light/80 mt-2">
+                        Por qué comprender qué ocurre dentro de un tubo de PCR te convierte en un mejor analista de datos biomédicos.
+                    </p>
+                </article>
+                <article class="classic-moldura-border grid-paper p-6 bg-limestone-light/80 dark:bg-[#181512]">
+                    <span class="font-cinzel text-xs text-sky-deep dark:text-goldLeaf">SEPTIEMBRE 2026</span>
+                    <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-2">Apuntes de una estancia en Edimburgo</h3>
+                    <p class="text-sm text-bistre/85 dark:text-limestone-light/80 mt-2">
+                        Aprendizajes científicos y personales trabajando en neurociencia computacional en Heriot-Watt University.
+                    </p>
+                </article>
+            </div>
+        </div>
+
+
+        <!-- ========================================================
+             VISTA 7: PÁGINA DE REFERENCIAS
+             ======================================================== -->
+        <div id="view-referencias" class="page-view space-y-8">
+            <div class="border-b border-goldLeaf/40 pb-4 flex justify-between items-end">
+                <div>
+                    <span class="font-cinzel text-xs uppercase tracking-[0.2em] text-sky-deep dark:text-goldLeaf">§ PÁGINA DEDICADA · SECCIÓN VII</span>
+                    <h2 class="font-cinzel text-3xl font-bold text-bistre dark:text-limestone-light mt-1">Referencias Académicas y Científicas</h2>
+                </div>
+                <button onclick="switchPage('inicio')" class="font-cinzel text-xs border border-goldLeaf px-3 py-1.5 hover:bg-goldLeaf/20">← Volver al Inicio</button>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="classic-moldura-border bg-limestone-light/80 dark:bg-[#181512] p-6">
-                    <div class="font-cinzel text-[10px] uppercase tracking-widest text-sky-deep dark:text-goldLeaf">HOSPITAL UNIVERSITARIO 12 DE OCTUBRE</div>
-                    <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-2">Dr. Alberto García Redondo</h3>
-                    <p class="font-serif italic text-sm text-bistre/80 dark:text-limestone-light/80 mt-1"
-                       data-es="Investigador Principal · Laboratorio de Diagnóstico Genético e Investigación en ELA"
-                       data-en="Principal Investigator · Genetic Diagnosis & ALS Research Laboratory">
-                        Investigador Principal · Laboratorio de Diagnóstico Genético e Investigación en ELA
-                    </p>
-                    <p class="text-xs text-bistre/70 dark:text-limestone-light/65 mt-3">
-                        Instituto de Investigación Sanitaria Hospital 12 de Octubre (i+12), Madrid.
-                    </p>
+                    <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light">Dr. Alberto García Redondo</h3>
+                    <p class="font-serif italic text-sm text-bistre/80 dark:text-limestone-light/80 mt-1">Investigador Principal · GenELA, Hospital 12 de Octubre</p>
                 </div>
-
                 <div class="classic-moldura-border bg-limestone-light/80 dark:bg-[#181512] p-6">
-                    <div class="font-cinzel text-[10px] uppercase tracking-widest text-sky-deep dark:text-goldLeaf">HERIOT-WATT UNIVERSITY (EDINBURGH)</div>
-                    <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-2">Dra. Marta Vallejo</h3>
-                    <p class="font-serif italic text-sm text-bistre/80 dark:text-limestone-light/80 mt-1"
-                       data-es="Supervisora de Investigación · Ciencias de la Computación y ML-Health"
-                       data-en="Research Supervisor · Computer Science & ML-Health">
-                        Supervisora de Investigación · Ciencias de la Computación y ML-Health
-                    </p>
-                    <p class="text-xs text-bistre/70 dark:text-limestone-light/65 mt-3">
-                        School of Mathematical and Computer Sciences, Heriot-Watt University, UK.
-                    </p>
+                    <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light">Dra. Marta Vallejo</h3>
+                    <p class="font-serif italic text-sm text-bistre/80 dark:text-limestone-light/80 mt-1">Supervisora de Investigación · Heriot-Watt University</p>
                 </div>
-
                 <div class="classic-moldura-border bg-limestone-light/80 dark:bg-[#181512] p-6">
-                    <div class="font-cinzel text-[10px] uppercase tracking-widest text-sky-deep dark:text-goldLeaf">HOSPITAL UNIVERSITARIO 12 DE OCTUBRE</div>
-                    <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light mt-2">Dr. Daniel Borrego Hernández</h3>
-                    <p class="font-serif italic text-sm text-bistre/80 dark:text-limestone-light/80 mt-1"
-                       data-es="Investigador Postdoctoral y Tutor de Estancia Experimental"
-                       data-en="Postdoctoral Researcher & Experimental Internship Tutor">
-                        Investigador Postdoctoral y Tutor de Estancia Experimental
-                    </p>
-                    <p class="text-xs text-bistre/70 dark:text-limestone-light/65 mt-3">
-                        Laboratorio de Investigación en ELA (GenELA), Fundación i+12, Madrid.
-                    </p>
+                    <h3 class="font-cinzel text-xl font-bold text-bistre dark:text-limestone-light">Dr. Daniel Borrego Hernández</h3>
+                    <p class="font-serif italic text-sm text-bistre/80 dark:text-limestone-light/80 mt-1">Investigador Postdoctoral y Tutor · GenELA, i+12</p>
                 </div>
             </div>
-        </section>
+        </div>
 
     </main>
 
+    <!-- PIE DE PÁGINA ACTUALIZADO CON TUS ENLACES -->
     <footer class="border-t border-goldLeaf/40 bg-limestone-aged dark:bg-[#151210] py-12 mt-16">
         <div class="max-w-6xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
@@ -681,73 +633,43 @@
                 </p>
             </div>
             <div class="flex flex-wrap items-center gap-4 font-cinzel text-xs">
-                <a href="mailto:tu-correo@ejemplo.com" class="px-4 py-2 border border-bistre dark:border-goldLeaf text-bistre dark:text-goldLeaf hover:bg-bistre hover:text-limestone-light dark:hover:bg-goldLeaf dark:hover:text-bistre-dark transition-colors">
-                    ✉ Contacto por Email
+                <a href="mailto:victor.versam@gmail.com" class="px-4 py-2 border border-bistre dark:border-goldLeaf text-bistre dark:text-goldLeaf hover:bg-bistre hover:text-limestone-light dark:hover:bg-goldLeaf dark:hover:text-bistre-dark transition-colors">
+                    ✉ victor.versam@gmail.com
                 </a>
-                <a href="https://linkedin.com/" target="_blank" class="hover:underline">LinkedIn</a>
-                <a href="https://github.com/" target="_blank" class="hover:underline">GitHub</a>
-                <a href="https://instagram.com/" target="_blank" class="hover:underline">Instagram</a>
+                <a href="https://www.linkedin.com/in/victorverdusamper" target="_blank" rel="noopener" class="hover:underline text-bistre dark:text-goldLeaf">LinkedIn ↗</a>
+                <a href="https://www.instagram.com/viktorverdu?exln=ZGZyeGNodW01aG0%3D&utm_source=qr" target="_blank" rel="noopener" class="hover:underline text-bistre dark:text-goldLeaf">Instagram ↗</a>
             </div>
         </div>
     </footer>
 
-    <div id="blog-modal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-xs flex items-center justify-center p-4">
-        <div class="classic-moldura-border bg-limestone-light dark:bg-[#181512] max-w-2xl w-full p-6 sm:p-8 max-h-[85vh] overflow-y-auto">
-            <div class="flex justify-between items-center border-b border-goldLeaf/40 pb-3 mb-4">
-                <span id="modal-date" class="font-cinzel text-xs text-sky-deep dark:text-goldLeaf"></span>
-                <button onclick="closeBlogModal()" class="font-cinzel text-xs px-2.5 py-1 border border-goldLeaf hover:bg-goldLeaf/20">✕ CERRAR</button>
-            </div>
-            <h3 id="modal-title" class="font-cinzel text-2xl sm:text-3xl font-bold text-bistre dark:text-limestone-light mb-4"></h3>
-            <div id="modal-body" class="space-y-4 text-sm sm:text-base leading-relaxed text-bistre/90 dark:text-limestone-light/90"></div>
-        </div>
-    </div>
-
+    <!-- SCRIPTS DE NAVEGACIÓN MULTIPÁGINA Y IDIOMA -->
     <script>
         let currentLang = 'es';
 
         function toggleTheme() {
-            const html = document.documentElement;
-            html.classList.toggle('dark');
+            document.documentElement.classList.toggle('dark');
         }
 
         function toggleLanguage() {
             currentLang = currentLang === 'es' ? 'en' : 'es';
             document.querySelectorAll('[data-es]').forEach(el => {
-                el.textContent = el.getAttribute(`data-${currentLang}`);
+                if (el.getAttribute(`data-${currentLang}`)) {
+                    el.textContent = el.getAttribute(`data-${currentLang}`);
+                }
             });
         }
 
-        const blogPosts = {
-            1: {
-                date: 'OCTUBRE 2026 · CUADERNO DE INVESTIGACIÓN',
-                titleEs: 'Conectando el banco de laboratorio (Wet Lab) y la bioinformática (Dry Lab)',
-                titleEn: 'Bridging the Wet Lab Bench and Dry Lab Bioinformatics',
-                bodyEs: `<p>En la biomedicina actual es frecuente encontrar perfiles puramente experimentales o puramente computacionales. Sin embargo, cuando trabajas extrayendo ADN, realizando PCRs o interpretando electroforesis y secuencias Sanger en un hospital, adquieres una intuición crítica sobre de dónde salen realmente los datos.</p>
-                         <p>Ese conocimiento del laboratorio clínico y experimental evita errores al entrenar modelos de Machine Learning o analizar cohortes genéticas, y permite plantear preguntas biológicas con verdadero sentido traslacional.</p>`,
-                bodyEn: `<p>In modern biomedicine, researchers often specialize strictly in either wet-lab protocols or computational pipelines. However, performing DNA extractions, PCRs, and Sanger sequencing in a clinical setting builds critical intuition about how biological data is actually generated.</p>
-                         <p>That experimental grounding prevents artifacts when training Machine Learning models and ensures that computational analyses answer clinically meaningful questions.</p>`
-            },
-            2: {
-                date: 'SEPTIEMBRE 2026 · ESTANCIA INTERNACIONAL',
-                titleEs: 'Apuntes de una estancia de investigación en Edimburgo',
-                titleEn: 'Notes from a Research Placement in Edinburgh',
-                bodyEs: `<p>Realizar una estancia Erasmus+ en Heriot-Watt University me permitió adentrarme de lleno en el ámbito de la neurociencia computacional y compartir resultados en el encuentro ML-Health.</p>
-                         <p>Trabajar en un entorno internacional rodeado de especialistas en inteligencia artificial aplicada a la salud reafirmó mi interés por seguir explorando la intersección entre la neurobiología, la genética, la inmunología y la patología humana.</p>`,
-                bodyEn: `<p>Completing an Erasmus+ research placement at Heriot-Watt University allowed me to dive deeply into computational neuroscience and present our findings at the ML-Health event.</p>
-                         <p>Working in an international environment alongside AI-in-health researchers reinforced my motivation to continue exploring the intersection of neurobiology, genetics, immunology, and human pathology.</p>`
+        function switchPage(pageId) {
+            // Ocultar todas las vistas
+            document.querySelectorAll('.page-view').forEach(view => {
+                view.classList.remove('active');
+            });
+            // Mostrar la vista seleccionada
+            const target = document.getElementById(`view-${pageId}`);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-        };
-
-        function openBlogModal(id) {
-            const post = blogPosts[id];
-            document.getElementById('modal-date').textContent = post.date;
-            document.getElementById('modal-title').textContent = currentLang === 'es' ? post.titleEs : post.titleEn;
-            document.getElementById('modal-body').innerHTML = currentLang === 'es' ? post.bodyEs : post.bodyEn;
-            document.getElementById('blog-modal').classList.remove('hidden');
-        }
-
-        function closeBlogModal() {
-            document.getElementById('blog-modal').classList.add('hidden');
         }
     </script>
 </body>
