@@ -172,27 +172,27 @@
         </p>
     </div>
 
-    <!-- BARRA DE NAVEGACIÓN NEOCLÁSICA Y MULTIPÁGINA -->
+    <!-- BARRA DE NAVEGACIÓN NEOCLÁSICA Y MULTIPÁGINA (DISEÑO FLEXIBLE) -->
     <header class="sticky top-0 z-40 border-b border-goldLeaf/50 bg-limestone-light/95 dark:bg-[#181512]/95 backdrop-blur-md">
-        <div class="max-w-6xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-wrap items-center justify-between gap-4">
             
-            <!-- Sello / Monograma -->
-            <a href="#inicio" onclick="switchPage('inicio')" class="flex items-center gap-3.5 group">
-                <span class="w-10 h-10 flex items-center justify-center border-2 border-goldLeaf bg-bistre text-limestone-light dark:bg-goldLeaf dark:text-bistre-dark font-cinzel font-bold text-base tracking-wider shadow-sm group-hover:scale-105 transition-transform">
+            <!-- Sello / Monograma y Nombre -->
+            <a href="#inicio" onclick="switchPage('inicio')" class="flex items-center gap-3 group">
+                <span class="w-10 h-10 flex items-center justify-center border-2 border-goldLeaf bg-bistre text-limestone-light dark:bg-goldLeaf dark:text-bistre-dark font-cinzel font-bold text-base tracking-wider shadow-sm group-hover:scale-105 transition-transform shrink-0">
                     VV
                 </span>
                 <div>
-                    <span class="font-cinzel font-bold text-base sm:text-lg tracking-[0.12em] text-bistre dark:text-limestone-light block leading-none">
+                    <span class="font-cinzel font-bold text-sm sm:text-base tracking-[0.1em] text-bistre dark:text-limestone-light block whitespace-span leading-tight">
                         VÍCTOR VERDÚ SAMPER
                     </span>
-                    <span class="font-serif italic text-xs tracking-wider text-sky-deep dark:text-goldLeaf">
+                    <span class="font-serif italic text-xs tracking-wider text-sky-deep dark:text-goldLeaf block">
                         Biología · Biomedicina · Investigación
                     </span>
                 </div>
             </a>
 
             <!-- Índice Neoclásico con Enlaces a Páginas Dedicadas -->
-            <nav class="hidden lg:flex items-center gap-5 text-xs font-cinzel font-semibold tracking-[0.12em] uppercase text-bistre dark:text-limestone-light/90">
+            <nav class="hidden xl:flex items-center gap-4 text-xs font-cinzel font-semibold tracking-[0.1em] uppercase text-bistre dark:text-limestone-light/90">
                 <a href="#inicio" onclick="switchPage('inicio')" class="hover:text-goldLeaf transition-colors" data-es="Inicio" data-en="Home">Inicio</a>
                 <a href="#biografia" onclick="switchPage('biografia')" class="hover:text-goldLeaf transition-colors" data-es="I. Biografía" data-en="I. Biography">I. Biografía</a>
                 <a href="#disciplinas" onclick="switchPage('disciplinas')" class="hover:text-goldLeaf transition-colors" data-es="II. Disciplinas" data-en="II. Disciplines">II. Disciplinas</a>
@@ -203,9 +203,21 @@
                 <a href="#referencias" onclick="switchPage('referencias')" class="hover:text-goldLeaf transition-colors" data-es="VII. Referencias" data-en="VII. References">VII. Referencias</a>
             </nav>
 
-            <!-- Controles: Idioma y Modo Estuco Nocturno -->
-            <div class="flex items-center gap-2.5">
-                <button id="lang-toggle" onclick="toggleLanguage()" class="px-2.5 py-1.5 border border-goldLeaf/60 bg-limestone-aged/50 dark:bg-[#241F1A] font-cinzel text-xs font-semibold tracking-wider text-bistre dark:text-goldLeaf hover:border-bistre transition-colors">
+            <!-- Menú simplificado para pantallas medianas -->
+            <nav class="hidden lg:flex xl:hidden items-center gap-3 text-[11px] font-cinzel font-semibold tracking-[0.08em] uppercase text-bistre dark:text-limestone-light/90">
+                <a href="#inicio" onclick="switchPage('inicio')" class="hover:text-goldLeaf">Inicio</a>
+                <a href="#biografia" onclick="switchPage('biografia')" class="hover:text-goldLeaf">I. Bio</a>
+                <a href="#disciplinas" onclick="switchPage('disciplinas')" class="hover:text-goldLeaf">II. Disc</a>
+                <a href="#laminas" onclick="switchPage('laminas')" class="hover:text-goldLeaf">III. Lam</a>
+                <a href="#trayectoria" onclick="switchPage('trayectoria')" class="hover:text-goldLeaf">IV. Tray</a>
+                <a href="#papers" onclick="switchPage('papers')" class="hover:text-goldLeaf">V. Pap</a>
+                <a href="#cuaderno" onclick="switchPage('cuaderno')" class="hover:text-goldLeaf">VI. Cua</a>
+                <a href="#referencias" onclick="switchPage('referencias')" class="hover:text-goldLeaf">VII. Ref</a>
+            </nav>
+
+            <!-- Controles: Idioma y Modo Estuco Nocturno (Con margen de separación ampliado) -->
+            <div class="flex items-center gap-3 ml-auto xl:ml-0 shrink-0">
+                <button id="lang-toggle" onclick="toggleLanguage()" class="px-2.5 py-1.5 border border-goldLeaf/60 bg-limestone-aged/50 dark:bg-[#241F1A] font-cinzel text-xs font-semibold tracking-wider text-bistre dark:text-goldLeaf hover:border-bistre transition-colors shadow-xs">
                     ES ❖ EN
                 </button>
                 <button id="theme-toggle" onclick="toggleTheme()" class="px-3 py-1.5 border border-goldLeaf bg-bistre text-limestone-light dark:bg-[#241F1A] dark:text-goldLeaf font-cinzel text-xs font-semibold tracking-wider hover:opacity-90 transition-all shadow-sm">
@@ -823,4 +835,3 @@
     </script>
 </body>
 </html>
-
