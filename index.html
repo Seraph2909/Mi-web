@@ -20,7 +20,7 @@
                 extend: {
                     fontFamily: {
                         cinzel: ['"Cinzel"', 'Georgia', 'serif'],
-                        fell: ['"IM Fell English"', 'Georgia, serif'],
+                        fell: ['"IM Fell English"', 'Georgia', 'serif'],
                         script: ['"Pinyon Script"', 'cursive'],
                         serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
                         mono: ['"JetBrains Mono"', 'monospace'],
@@ -57,7 +57,7 @@
         body {
             background-color: #F7F4EE;
             background-image: 
-                radial-gradient(circle at 50% 10%, rgba(212, 228, 240, 0.38) 0%, rgba(247, 244, 238, 0.82) 50%, rgba(236, 230, 218, 0.96) 100%),
+                radial-gradient(circle at 50% 10%, rgba(212, 228, 240, 0.35) 0%, rgba(247, 244, 238, 0.8) 50%, rgba(236, 230, 218, 0.95) 100%),
                 repeating-linear-gradient(0deg, rgba(74, 59, 44, 0.015) 0px, rgba(74, 59, 44, 0.015) 1px, transparent 1px, transparent 3px);
             color: #2A1F16;
             transition: background-color 0.4s ease, color 0.4s ease;
@@ -71,11 +71,10 @@
             color: #E8E2D5;
         }
 
-        /* Papel Cuadriculado / Milimetrado para notas */
         .grid-paper {
             background-image: 
-                linear-gradient(to right, rgba(140, 111, 57, 0.09) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(140, 111, 57, 0.09) 1px, transparent 1px);
+                linear-gradient(to right, rgba(184, 150, 85, 0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(184, 150, 85, 0.08) 1px, transparent 1px);
             background-size: 20px 20px;
         }
         html.dark .grid-paper {
@@ -84,13 +83,11 @@
                 linear-gradient(to bottom, rgba(184, 150, 85, 0.05) 1px, transparent 1px);
         }
 
-        /* Marco Rococó de Moldura Clásica con líneas dobles */
         .classic-moldura-border {
             border: 2px solid #8C6F39;
-            outline: 1px solid rgba(140, 111, 57, 0.4);
+            outline: 1px solid rgba(140, 111, 57, 0.35);
             outline-offset: -6px;
-            box-shadow: 0 10px 30px -5px rgba(42, 31, 22, 0.14);
-            position: relative;
+            box-shadow: 0 10px 30px -5px rgba(42, 31, 22, 0.12);
         }
         html.dark .classic-moldura-border {
             border-color: #B89655;
@@ -98,7 +95,6 @@
             box-shadow: 0 12px 35px -5px rgba(0, 0, 0, 0.6);
         }
 
-        /* Filtro fotográfico de Grabado al BISTRE / Sepia */
         .photo-botanic-filter {
             filter: sepia(30%) contrast(106%) brightness(96%) saturate(90%);
             transition: filter 0.45s ease, transform 0.5s ease;
@@ -108,7 +104,6 @@
             filter: sepia(0%) contrast(100%) brightness(100%) saturate(100%);
         }
 
-        /* Letra Capitular Iluminada */
         .botanic-drop-cap::first-letter {
             font-family: "Cinzel", Georgia, serif;
             float: left;
@@ -124,44 +119,39 @@
             color: #D4B77B;
         }
 
-        /* Divisor con Clave de Sol Botánica y Enredaderas */
-        .acanthus-divider {
+        .botanic-divider {
             display: flex;
             align-items: center;
             text-align: center;
             color: #8C6F39;
         }
-        html.dark .acanthus-divider {
+        html.dark .botanic-divider {
             color: #B89655;
         }
-        .acanthus-divider::before,
-        .acanthus-divider::after {
+        .botanic-divider::before,
+        .botanic-divider::after {
             content: '';
             flex: 1;
-            border-bottom: 1.5px solid rgba(140, 111, 57, 0.45);
+            border-bottom: 1px solid rgba(140, 111, 57, 0.4);
         }
-        .acanthus-divider:not(:empty)::before {
-            margin-right: 1.5rem;
+        .botanic-divider:not(:empty)::before {
+            margin-right: 1.2rem;
         }
-        .acanthus-divider:not(:empty)::after {
-            margin-left: 1.5rem;
+        .botanic-divider:not(:empty)::after {
+            margin-left: 1.2rem;
         }
     </style>
 </head>
 <body class="font-serif antialiased selection:bg-sky selection:text-bistre dark:selection:bg-goldLeaf dark:selection:text-bistre-dark">
 
-    <!-- CINTA SUPERIOR: CIELO AL OLEO & EX LIBRIS -->
     <div class="relative overflow-hidden border-b border-goldLeaf/40 bg-gradient-to-r from-sky-light via-limestone-aged to-sky-light dark:from-[#1b2836] dark:via-[#1c1a17] dark:to-[#1b2836] py-2 px-4 text-center shadow-inner">
         <p class="font-cinzel text-[10px] sm:text-[11px] tracking-[0.25em] uppercase text-bistre dark:text-goldLeaf font-semibold">
             <span>☁ COMPENDIUM SCIENTIAE · HISTORIA NATURALIS & BIOLOGIA · MADRID MMXXVI ☁</span>
         </p>
     </div>
 
-    <!-- BARRA DE NAVEGACIÓN NEOCLÁSICA -->
     <header class="sticky top-0 z-40 border-b border-goldLeaf/50 bg-limestone-light/95 dark:bg-[#181512]/95 backdrop-blur-md">
         <div class="max-w-6xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
-            
-            <!-- Sello / Monograma -->
             <a href="#inicio" class="flex items-center gap-3.5 group">
                 <span class="w-10 h-10 flex items-center justify-center border-2 border-goldLeaf bg-bistre text-limestone-light dark:bg-goldLeaf dark:text-bistre-dark font-cinzel font-bold text-base tracking-wider shadow-sm group-hover:scale-105 transition-transform">
                     VV
@@ -176,7 +166,6 @@
                 </div>
             </a>
 
-            <!-- Índice Neoclásico -->
             <nav class="hidden lg:flex items-center gap-6 text-xs font-cinzel font-semibold tracking-[0.15em] uppercase text-bistre dark:text-limestone-light/90">
                 <a href="#sobre-mi" class="hover:text-goldLeaf transition-colors" data-es="I. Biografía" data-en="I. About Me">I. Biografía</a>
                 <a href="#disciplinas" class="hover:text-goldLeaf transition-colors" data-es="II. Disciplinas" data-en="II. Disciplines">II. Disciplinas</a>
@@ -186,7 +175,6 @@
                 <a href="#blog" class="hover:text-goldLeaf transition-colors" data-es="VI. Cuaderno" data-en="VI. Notebook">VI. Cuaderno</a>
             </nav>
 
-            <!-- Controles: Idioma y Modo Estuco Nocturno -->
             <div class="flex items-center gap-2.5">
                 <button id="lang-toggle" onclick="toggleLanguage()" class="px-2.5 py-1.5 border border-goldLeaf/60 bg-limestone-aged/50 dark:bg-[#241F1A] font-cinzel text-xs font-semibold tracking-wider text-bistre dark:text-goldLeaf hover:border-bistre transition-colors">
                     ES ❖ EN
@@ -198,31 +186,17 @@
         </div>
     </header>
 
-    <!-- CONTENEDOR PRINCIPAL CON MARCO DE MOLDURA CLÁSICA -->
     <main id="inicio" class="max-w-6xl mx-auto px-4 sm:px-8 py-12 space-y-20">
 
-        <!-- ========================================================
-             SECCIÓN I: BIOGRAFÍA Y RETRATO CON CENEFAS ROCOCÓ
-             ======================================================== -->
         <section id="sobre-mi" class="classic-moldura-border bg-limestone-light/90 dark:bg-[#181512]/95 p-6 sm:p-10 lg:p-12 relative overflow-hidden">
-            
-            <!-- Cenefas de Acanto Grabadas en las 4 Esquinas -->
-            <div class="absolute top-3 left-3 w-16 h-16 pointer-events-none opacity-50 text-goldLeaf">
-                <svg viewBox="0 0 100 100" fill="currentColor">
-                    <path d="M0 0h40v4H4v36H0V0zm96 0h4v40h-4V4H60V0h36zM0 96h4v4h36v4H0v-8zm96 0v8H60v-4h36v-4z"/>
-                    <path d="M12 12c15 0 28 13 28 28s-13 28-28 28S12 55 12 40s13-28 28-28zm0 8c-11 0-20 9-20 20s9 20 20 20 20-9 20-20-9-20-20-20z" opacity="0.3"/>
-                    <path d="M15 15l25 25M85 15L60 40M15 85l25-25M85 85L60 60" stroke="currentColor" stroke-width="2"/>
-                </svg>
+            <div class="absolute top-2 left-2 w-12 h-12 pointer-events-none opacity-40 text-goldLeaf">
+                <svg viewBox="0 0 100 100" fill="currentColor"><path d="M0 0h100v10H10v90H0V0zm20 20h60v60H20V20z"/></svg>
             </div>
-            <div class="absolute bottom-3 right-3 w-16 h-16 pointer-events-none opacity-50 text-goldLeaf rotate-180">
-                <svg viewBox="0 0 100 100" fill="currentColor">
-                    <path d="M0 0h40v4H4v36H0V0zm96 0h4v40h-4V4H60V0h36zM0 96h4v4h36v4H0v-8zm96 0v8H60v-4h36v-4z"/>
-                    <path d="M15 15l25 25M85 15L60 40M15 85l25-25M85 85L60 60" stroke="currentColor" stroke-width="2"/>
-                </svg>
+            <div class="absolute bottom-2 right-2 w-12 h-12 pointer-events-none opacity-40 text-goldLeaf">
+                <svg viewBox="0 0 100 100" fill="currentColor"><path d="M100 100H0v-10h90V0h10v100zM80 80H20V20h60v60z"/></svg>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                
                 <div class="lg:col-span-7 space-y-6">
                     <div class="inline-flex items-center gap-2 px-3 py-1 border border-goldLeaf/50 bg-limestone-aged/60 dark:bg-[#241F1A] font-cinzel text-xs text-sky-deep dark:text-goldLeaf tracking-wider">
                         <span>❧ LÁMINA I · FILOSOFÍA NATURAL & BIOLOGÍA</span>
@@ -283,14 +257,10 @@
             </div>
         </section>
 
-        <!-- DIVISOR CON CLAVE DE SOL Y ENREDADERAS -->
-        <div class="acanthus-divider font-cinzel text-lg tracking-[0.3em]">
-            <span class="text-goldLeaf">𝄞</span> ❧ ❖ ☙ <span class="text-goldLeaf">𝄢</span>
+        <div class="botanic-divider font-cinzel text-sm tracking-[0.4em]">
+            ❧ ❖ ❧
         </div>
 
-        <!-- ========================================================
-             SECCIÓN II: ÁREAS DE INTERÉS CIENTÍFICO
-             ======================================================== -->
         <section id="disciplinas" class="space-y-8">
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-goldLeaf/40 pb-4">
                 <div>
@@ -371,14 +341,10 @@
             </div>
         </section>
 
-        <!-- DIVISOR BOTÁNICO -->
-        <div class="acanthus-divider font-cinzel text-lg tracking-[0.3em]">
-            <span class="text-goldLeaf">𝄞</span> ❧ ❖ ☙ <span class="text-goldLeaf">𝄢</span>
+        <div class="botanic-divider font-cinzel text-sm tracking-[0.4em]">
+            ❧ ❖ ❧
         </div>
 
-        <!-- ========================================================
-             SECCIÓN III: ARCHIVO VISUAL (LÁMINAS)
-             ======================================================== -->
         <section id="galeria" class="space-y-8">
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-goldLeaf/40 pb-4">
                 <div>
@@ -454,14 +420,10 @@
             </div>
         </section>
 
-        <!-- DIVISOR BOTÁNICO -->
-        <div class="acanthus-divider font-cinzel text-lg tracking-[0.3em]">
-            <span class="text-goldLeaf">𝄞</span> ❧ ❖ ☙ <span class="text-goldLeaf">𝄢</span>
+        <div class="botanic-divider font-cinzel text-sm tracking-[0.4em]">
+            ❧ ❖ ❧
         </div>
 
-        <!-- ========================================================
-             SECCIÓN IV: TRAYECTORIA ACADÉMICA
-             ======================================================== -->
         <section id="trayectoria" class="space-y-8">
             <div class="border-b border-goldLeaf/40 pb-4">
                 <span class="font-cinzel text-xs uppercase tracking-[0.2em] text-sky-deep dark:text-goldLeaf">§ SECCIÓN IV · CRONOLOGÍA ACADÉMICA</span>
@@ -529,14 +491,10 @@
             </div>
         </section>
 
-        <!-- DIVISOR BOTÁNICO -->
-        <div class="acanthus-divider font-cinzel text-lg tracking-[0.3em]">
-            <span class="text-goldLeaf">𝄞</span> ❧ ❖ ☙ <span class="text-goldLeaf">𝄢</span>
+        <div class="botanic-divider font-cinzel text-sm tracking-[0.4em]">
+            ❧ ❖ ❧
         </div>
 
-        <!-- ========================================================
-             SECCIÓN V: TRABAJOS ACADÉMICOS Y PAPERS
-             ======================================================== -->
         <section id="publicaciones" class="space-y-8">
             <div class="border-b border-goldLeaf/40 pb-4">
                 <span class="font-cinzel text-xs uppercase tracking-[0.2em] text-sky-deep dark:text-goldLeaf">§ SECCIÓN V · PRODUCCIÓN CIENTÍFICA</span>
@@ -590,20 +548,16 @@
                     <p class="text-sm text-bistre/75 dark:text-limestone-light/70 mt-1"
                        data-es="Aquí se enlazarán los DOIs, preprints (bioRxiv / medRxiv) y repositorios de código asociados a próximas investigaciones."
                        data-en="DOIs, preprints (bioRxiv / medRxiv), and code repositories for upcoming research will be indexed here.">
-                        Aquí se enlazarán los DOIs, preprints (bioRxiv / medRxiv), y repositorios de código asociados a próximas investigaciones.
+                        Aquí se enlazarán los DOIs, preprints (bioRxiv / medRxiv) y repositorios de código asociados a próximas investigaciones.
                     </p>
                 </article>
             </div>
         </section>
 
-        <!-- DIVISOR BOTÁNICO -->
-        <div class="acanthus-divider font-cinzel text-lg tracking-[0.3em]">
-            <span class="text-goldLeaf">𝄞</span> ❧ ❖ ☙ <span class="text-goldLeaf">𝄢</span>
+        <div class="botanic-divider font-cinzel text-sm tracking-[0.4em]">
+            ❧ ❖ ❧
         </div>
 
-        <!-- ========================================================
-             SECCIÓN VI: CUADERNO DE NOTAS (PAPEL CUADRICULADO + CALIGRAFÍA)
-             ======================================================== -->
         <section id="blog" class="space-y-8">
             <div class="border-b border-goldLeaf/40 pb-4">
                 <span class="font-cinzel text-xs uppercase tracking-[0.2em] text-sky-deep dark:text-goldLeaf">§ SECCIÓN VI · CUADERNO DE CAMPO & CALIGRAFÍA</span>
@@ -614,7 +568,6 @@
                 </h2>
             </div>
 
-            <!-- Cita con Caligrafía Estilográfica sobre Papel Cuadriculado -->
             <div class="classic-moldura-border grid-paper p-6 sm:p-8 text-center space-y-3 bg-limestone-light/90 dark:bg-[#181512]">
                 <p class="font-script text-3xl sm:text-4xl text-sky-deep dark:text-goldLeaf">
                     “When you do something beautiful and nobody notices, do not be sad...”
@@ -665,9 +618,6 @@
             </div>
         </section>
 
-        <!-- ========================================================
-             SECCIÓN VII: REFERENCIAS ACADÉMICAS
-             ======================================================== -->
         <section id="referencias" class="space-y-8">
             <div class="border-b border-goldLeaf/40 pb-4">
                 <span class="font-cinzel text-xs uppercase tracking-[0.2em] text-sky-deep dark:text-goldLeaf">§ SECCIÓN VII · MENTORES Y SUPERVISORES</span>
@@ -722,7 +672,6 @@
 
     </main>
 
-    <!-- PIE DE PÁGINA -->
     <footer class="border-t border-goldLeaf/40 bg-limestone-aged dark:bg-[#151210] py-12 mt-16">
         <div class="max-w-6xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
@@ -742,7 +691,6 @@
         </div>
     </footer>
 
-    <!-- MODAL DE LECTURA DEL BLOG -->
     <div id="blog-modal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-xs flex items-center justify-center p-4">
         <div class="classic-moldura-border bg-limestone-light dark:bg-[#181512] max-w-2xl w-full p-6 sm:p-8 max-h-[85vh] overflow-y-auto">
             <div class="flex justify-between items-center border-b border-goldLeaf/40 pb-3 mb-4">
@@ -754,7 +702,6 @@
         </div>
     </div>
 
-    <!-- SCRIPTS -->
     <script>
         let currentLang = 'es';
 
